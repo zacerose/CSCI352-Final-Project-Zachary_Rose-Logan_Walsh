@@ -172,7 +172,8 @@ Our project is a custom video player as a C\# WPF application. It will allow you
 
 
 For this project, we plan to make a media player program that offers some features that are unavailable in Windows Media Player. It will include a file browser to select a media file, and it will include the controls for playback such as: play/pause, fast forward/slow down, and skip to different parts of the video, as well as volume controls. 
-This project is intended for those who want some finer control over the playback of their video files. Windows Media Player really only has the basic features when running a video, so that's the idea behind this program.
+
+This project is intended for those who want some finer control over the playback of their video files. Windows Media Player does have the basic features for controlling playback of media, but it leaves much to be desired in customization and more niche functionality. 
 
 
 \subsection{Background}
@@ -180,14 +181,14 @@ This project is intended for those who want some finer control over the playback
 Some useful terminology: 
 \begin{itemize}
 \item media: in this case, a file containing video and/or sound
-\item media player: a program that can playback different media, and usually allows for some control over different aspects of the playback
-\item playback: when the video and sound contained in the file is being shown to the viewer
+\item media player: a program that can playback different media, and it usually allows for some control over different aspects of the playback
+\item playback: media is in playback when it is currently being shown to the user
 \item file browser: a user interface to make selecting a file from the system convenient 
 \item Windows Media Player: a media player that comes with Windows OS by default. Very bare-bones. 
 \end{itemize}
 
 Why a media player?
-We thought it would be interesting to make a tool that we might actually use, rather than some project for the sake of some niche programming concept. 
+We thought it would be interesting to make a tool that we might actually use, rather than some project for the sake of displaying some unusual programming concept. It will be good practice towards developing a user interface for a user-oriented application. 
 
 \subsection{Impacts}
 
@@ -195,21 +196,20 @@ Our hope is that this project will become a useful little tool for those who wis
 
 \subsection{Challenges}
 
-I believe the two hardest things to make would likely be the video timeline and adding a full screen function. The timeline especially because it will change depending on how long the video is and it needs to be user friendly depending on if the video is 5 minutes or 50 minutes. 
+By far the hardest thing will likely be designing an interface to dynamically change key bindings. It will need a file to store them, the ability to parse and edit said file, and an interface with which the user will change the bindings from within the app. 
 
 
 \section{Scope}
 
-Basic goals for getting started: You can load up a video, play and pause it using buttons, and can be replayed. 
+Basic goals for getting started: You can load up a video, play and pause it using buttons, and it can be replayed. 
 
-The project will be done once the program runs without any issues and has enough features to differentiate it from windows media player.
+The project will be done once the program runs without any issues and has enough features to differentiate it from Windows Media Player.
 
 We think that this is a worthwhile project because it has practical use, and it will allow us to make further use of the WPF framework. It will require an attractive interface and different form elements working together behind the scenes. 
 
 
 \subsection{Requirements}
-As part of fleshing out the scope of your requirements, you'll also need to keep in mind both your functional and non-functional requirements.  These should be listed, and explained in detail as necessary.  Use this area to explain how you gathered these requirements.
-
+The functional requirements for a media player are straight forward for anyone who has used one before. We considered what we want to be able to do when watching a video, as well as what is absolutely necessary to do so. Loading a file is the absolute base requirement, but we've come to expect things like pausing and fast forwarding.
 
 \subsubsection{Functional}
 \begin{itemize}
@@ -217,6 +217,7 @@ As part of fleshing out the scope of your requirements, you'll also need to keep
 \item Can play video files
 \item Has a video timeline
 \item Full screen button
+\item Pause/play button
 \item Fast forward and slower playback speeds
 \item Volume control
 \end{itemize}
@@ -224,14 +225,14 @@ As part of fleshing out the scope of your requirements, you'll also need to keep
 Stretch Goals:
 \begin{itemize}
 
-\item Playing MP3 files
+\item Support for MP3 files
 \item Customization for key bindings
 \item Combining multiple files into a playlist with associated skip forward/backwards buttons
-\item UI scaling with window
+\item UI scales with the window
 \end{itemize}
 
 
-\subsubsection{Non-Functional}
+\subsubsection{Non-Functional (Incomplete from here)}
 \begin{itemize}
 \item Security -- user credentials must be encrypted on disk, users should be able to reset their passwords if forgotten
 \item you'll typically have fewer non-functional than functional requirements
