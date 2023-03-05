@@ -1,4 +1,3 @@
-
 %% bare_jrnl_compsoc.tex
 %% V1.4a
 %% 2014/09/17
@@ -141,7 +140,7 @@
 
 \begin{document}
 
-\title{C\# WPF Media Player\\ for UTM CSCI 352}
+\title{C\# WPF Video Player}
 %
 %
 
@@ -152,7 +151,7 @@
 
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-Our project is a custom video player as a C\# WPF application. It will allow you to browse to a file, load up a video, and control the playback as needed. The target is those who want more control over their video playback beyond what Windows comes with.
+Our project is a custom video player as a C\# WPF application. It will allow you to browse to a file, load up a video, and control the playback as needed. AVI, MWV, and MP4 will be supported file types. Those who want more control over their video playback beyond what Windows comes with will find this application useful. 
 \end{abstract}
 
 }
@@ -175,6 +174,7 @@ For this project, we plan to make a media player program that offers some featur
 
 This project is intended for those who want some finer control over the playback of their video files. Windows Media Player does have the basic features for controlling playback of media, but it leaves much to be desired in customization and more niche functionality. 
 
+Windows Media Player lacks features such as moving forward and backwards a frame at a time, enlarging the video at a key press, and muting the video with a key press. In fact, Windows Media Player lacks keyboard controls entirely. VLC Media Player has these features and more, but it can sometimes feel daunting and over bloated for an average use case. This media player will fit comfortably in the middle between the most casual of users and super users. 
 
 \subsection{Background}
 
@@ -185,14 +185,14 @@ Some useful terminology:
 \item playback: media is in playback when it is currently being shown to the user
 \item file browser: a user interface to make selecting a file from the system convenient 
 \item Windows Media Player: a media player that comes with Windows OS by default. Very bare-bones. 
+\item Fullscreen: refers to when the video is scaled up to cover an entire monitor. 
 \end{itemize}
 
-Why a media player?
-We thought it would be interesting to make a tool that we might actually use, rather than some project for the sake of displaying some unusual programming concept. It will be good practice towards developing a user interface for a user-oriented application. 
+We decided to make a media player because we thought it would be interesting to make a tool that we might actually use, rather than some project for the sake of displaying some unusual programming concept. It will be good practice towards developing a user interface for a user-oriented application. 
 
 \subsection{Impacts}
 
-Our hope is that this project will become a useful little tool for those who wish to have a light-weight and customizable media player. VLC media player can sometimes feel daunting and over bloated for an average use case, so our goal is to design something simple and functional.   
+Our hope is that this project will become a useful little tool for those who wish to have a light-weight and customizable media player. 
 
 \subsection{Challenges}
 
@@ -203,90 +203,118 @@ By far the hardest thing will likely be designing an interface to dynamically ch
 
 Basic goals for getting started: You can load up a video, play and pause it using buttons, and it can be replayed. 
 
-The project will be done once the program runs without any issues and has enough features to differentiate it from Windows Media Player.
+The project will be done once the program runs without any issues and has enough features to differentiate it from Windows Media Player. In other words, the ability to control the video playback with the keyboard and to create custom keybindings. 
 
 We think that this is a worthwhile project because it has practical use, and it will allow us to make further use of the WPF framework. It will require an attractive interface and different form elements working together behind the scenes. 
 
+Basic Goals:
+\begin{itemize}
+\item Can load a video file to prepare for playback.
+\item Can control playback through both mouse and keyboard. 
+\item Supports AVI, MKV, and MP4 filetypes. 
+\end{itemize}
+
+Stretch Goals:
+\begin{itemize}
+
+\item Permanent customization for key bindings, with the ability to reset to defaults. 
+\item Combining multiple files into a playlist with associated skip forward/backwards buttons.
+\item WPF window can be resized, with all the elements keeping the same size ratio. 
+\end{itemize}
 
 \subsection{Requirements}
 The functional requirements for a media player are straight forward for anyone who has used one before. We considered what we want to be able to do when watching a video, as well as what is absolutely necessary to do so. Loading a file is the absolute base requirement, but we've come to expect things like pausing and fast forwarding.
 
 \subsubsection{Functional}
 \begin{itemize}
-\item Design a functional interface
-\item Can play video files
-\item Has a video timeline
-\item Full screen button
-\item Pause/play button
-\item Fast forward and slower playback speeds
-\item Volume control
-\end{itemize}
-
-Stretch Goals:
-\begin{itemize}
-
-\item Support for MP3 files
-\item Customization for key bindings
-\item Combining multiple files into a playlist with associated skip forward/backwards buttons
-\item UI scales with the window
+\item User can play video files
+\item User can use video timeline to skip to desired part of video directly
+\item Application supports fullscreen playback 
+\item User can pause and unpause the playback at will
+\item Application supports different playback speeds, between .5x and 2x
+\item User can change the volume as desired
 \end{itemize}
 
 
-\subsubsection{Non-Functional (Incomplete from here)}
+\subsubsection{Non-Functional}
 \begin{itemize}
-\item Security -- user credentials must be encrypted on disk, users should be able to reset their passwords if forgotten
-\item you'll typically have fewer non-functional than functional requirements
+\item Application must be able to edit and reload keybindings between different sessions. 
+\item Application must be able to load and play several videos sequentially without performance loss.
 \end{itemize}
 
 \subsection{Use Cases}
-This subsection is arguably part of how you define your project scope (why it is in the Scope section...).  In a traditional Waterfall approach, as part of your requirements gathering phase (what does the product actually \emph{need} to do?), you will typically sit down with a user to develop use cases.
-
-You should have a table listing all use cases discussed in the document, the ID is just the order it is listed in, the name should be indicative of what should happen, the primary actor is typically most important in an application where you may have different levels of users (think admin vs normal user), complexity is a best-guess on your part as to how hard it should be.  A lower number in priority indicates that it needs to happen sooner rather than later.  A sample table, or Use Case Index can be seen in Table \ref{tab:useCaseIndex}.
-
-
-
 \begin{itemize}
 \item[Use Case Number:] 1
-\item[Use Case Name:] Add item to cart
-\item[Description:] A shopper on our site has identified an item they wish to buy.  They will click on a ``Add to Cart" button.  This will kick off a process to add one instance of the item to their cart.
+\item[Use Case Name:] Loading up a video
+\item[Description:] The user wants to load a video from their hard drive to prepare for playback.
 \end{itemize}
 
-You will then go on to (minimally) discuss a basic flow for the process:
-
 \begin{enumerate}
-\item User navigates to page listing desired item
-\item User left-clicks on ``Add to Cart" button.
-\item User cart is updated to reflect the new item, this also updates the current total.
-\item[Termination Outcome:] The user now has a single instance of the item in their cart.
+\item User opens up file browsing menu by left-clicking "Browse" (See Figure \ref{FileSearchMockup}).
+\item User navigates to desired video and selects it.
+\item[Termination Outcome:] Video is paused and prepared for playback.
 \end{enumerate}
 
-You may need to also add in any alternative flows:
-
-Alternative: Item already exists in the cart
+Alternative: User wishes to load a video using a file path
 \begin{enumerate}
-\item User navigates to page listing desired item
-\item User left-clicks on ``Add to Cart" button.
-\item User cart is updated to reflect the new item, showing that one more instance of the existing item has been added.  This also updates the current total.
-\item[Termination Outcome:] The user now has multiple instances of the item in their cart.
+\item User enters file path into search bar (See Figure \ref{FileSearchMockup}).
+\item User left-clicks "OK" button.
+\item[Termination Outcome:] Video is paused and prepared for playback.
 \end{enumerate}
 
-You will often also need to include pictures or diagrams.  It is quite common to see use-case diagrams in such write-ups.  To properly reference an image, you will need to use the \texttt{figure} environment and will need to reference it in your text (via the \texttt{ref} command) (see Figure \ref{cat1}).  NOTE: this is not a use case diagram, but a kitten.
+Note: File selected doesn't exist.
+\begin{enumerate}
+\item User selects a file that doesn't exist, doesn't have permissions to play, or isn't a valid video format.
+\item[Termination Outcome:] Application requests a valid file and allows for re-entry. 
 
-After fully describing a use case, it is time to move on to the next use case:
-
+\end{enumerate}
 \begin{itemize}
 \item[Use Case Number:] 2
-\item[Use Case Name:] Checkout
-\item[Description:] A shopper on our site has finished shopping.  They will click on a ``Checkout" button.  This will kick off a process to calculate cart total, any taxes, shipping rates, and collect payment from the shopper.
-
+\item[Use Case Name:] Editing keybindings
+\item[Description:] The user wants to change the default keyboard bindings for different aspects of playback control and expects these changes to persist through different sessions of using the application.
 \end{itemize}
 
-You will then need to continue to flesh out all use cases you have identified for your project.
+\begin{enumerate}
+\item User opens up the options by left-clicking the "Options" tab with the mouse.
+\item User selects "Edit Keybindings" by left-clicking with the mouse.
+\item User selects the binding they want to change, and presses the desired keyboard key to change it to.
+\item[Termination Outcome:] New keybindings are set for any available functionality, and the new bindings will be saved to a file for automatic loading upon opening the application. 
+\end{enumerate}
+
+\begin{itemize}
+\item[Use Case Number:] 3
+\item[Use Case Name:] Controlling playback
+\item[Description:] During playback, the user wants to control different aspects of the playback. See Figure \ref{PlayerMockup} for the buttons available to left-click. 
+\end{itemize}
+
+\begin{enumerate}
+\item User pauses and unpauses playback by left-clicking the pause button. 
+\item User increases and decreases playback speed using the corresponding buttons.  
+\item Alternative: User enters a playback speed directly into the text box and presses the enter key.
+\item User increases and decreases volume by dragging the volume slider using the mouse.
+\item User enters fullscreen mode by left-clicking the fullscreen button.
+\item[Termination Outcome:] Video is in playback in the way desired by the user.
+\end{enumerate}
+
+Alternative: User wishes to use keybindings to control video playback
+\begin{enumerate}
+\item User pauses and unpauses playback by pressing the bound buttons on the keyboard.
+\item User increases and decreases playback speed by pressing the bound buttons on the keyboard.
+\item User increases and decreases volume by pressing the bound buttons on the keyboard.
+\item User enters fullscreen mode by pressing the bound button on the keyboard.
+\item[Termination Outcome:] Video is in playback in the way desired by the user.
+\end{enumerate}
 
 \begin{figure}[ht!]
-\includegraphics[height=250px, width=350px]{cat1.jpg}
-\caption{First picture, this is a kitten, not a use case diagram}
-\label{cat1}
+\includegraphics[height=250px, width=350px]{FileSearchMockup.png}
+\caption{Sample of interface for selecting video file}
+\label{FileSearchMockup}
+\end{figure}
+
+\begin{figure}[ht!]
+\includegraphics[height=250px, width=350px]{PlayerMockup.png}
+\caption{Sample of interface when a video is in playback}
+\label{PlayerMockup}
 \end{figure}
 
 \subsection{Interface Mockups}
