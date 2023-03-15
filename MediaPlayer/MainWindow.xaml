@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaPlayer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="450" Width="800" Background="#FF3F0404" AllowDrop="True">
+    <Grid x:Name="MainUI" Background="#FFD4D4D4" AllowDrop="True" Drop="DropDown">
+        <MediaElement x:Name="viewport" Margin="2,28,2,64" MediaOpened="OpenMedia" OpacityMask="Black" AllowDrop="False"/>
+        <Button x:Name="PlayPause" Content="Pause" HorizontalAlignment="Center" Margin="0,387,0,0" VerticalAlignment="Top" Height="37" Width="44" Background="#FFA8A8A8" Click="PlayPause_Click"/>
+        <Slider x:Name="Seeker" HorizontalAlignment="Center" Margin="0,364,0,0" VerticalAlignment="Top" Width="780" ValueChanged="Seeker_ValueChanged"/>
+
     </Grid>
 </Window>
