@@ -33,7 +33,8 @@ namespace MediaPlayer
             vidTimer = new DispatcherTimer();
             vidTimer.Interval = TimeSpan.FromMilliseconds(500);
             vidTimer.Tick += new EventHandler(tickTimer);
-
+            viewport.LoadedBehavior = MediaState.Manual;
+            viewport.UnloadedBehavior = MediaState.Manual;
         }
 
         void tickTimer(object sender, EventArgs e)
@@ -63,8 +64,6 @@ namespace MediaPlayer
             //Sets the dropped file to the viewport
             viewport.Source = new Uri(vidFile);
 
-            viewport.LoadedBehavior = MediaState.Manual;
-            viewport.UnloadedBehavior = MediaState.Manual;
             viewport.Volume = 1; //Temporary, will use a slider
             viewport.Play();
             isPlaying = true;
