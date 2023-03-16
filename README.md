@@ -1,5 +1,5 @@
 # Media_Player_Final_Project
-Names: Logan Walsh
+Names: Logan Walsh, Zachary Rose
 
 Last Updated: 3/14/2023
 
