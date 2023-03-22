@@ -16,7 +16,7 @@ using System.Windows.Threading; //Added for the timer
 using System.Windows.Shapes;
 
 //Video player Program by Logan Walsh and Zachary Rose
-//Last Edited: 3-14-2023
+//Last Edited: 3-18-2023
 
 namespace MediaPlayer
 {
@@ -80,6 +80,35 @@ namespace MediaPlayer
         private void Seeker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             viewport.Position = TimeSpan.FromSeconds(Seeker.Value);
+        }
+
+        private void Playback_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            double playback;
+            playback = double.Parse(ManualPlayback.Text);
+            viewport.SpeedRatio = playback;
+        }
+
+        //TEMPORARY, Want to use the Playback_TextChanged element for this feature
+        private void Reverse_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void FREV_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void FFWD_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        void PropertyValues()
+        {
+
+            //playback = double.Parse(Playback_TextChanged.Text);
+            //viewport.SpeedRatio = playback;
+
         }
     }
 }

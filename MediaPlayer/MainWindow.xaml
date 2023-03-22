@@ -7,9 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="#FF3F0404" AllowDrop="True">
     <Grid x:Name="MainUI" Background="#FFD4D4D4" AllowDrop="True" Drop="DropDown">
-        <MediaElement x:Name="viewport" Margin="2,28,2,64" MediaOpened="OpenMedia" OpacityMask="Black" AllowDrop="False"/>
-        <Button x:Name="PlayPause" Content="Pause" HorizontalAlignment="Center" Margin="0,387,0,0" VerticalAlignment="Top" Height="37" Width="44" Background="#FFA8A8A8" Click="PlayPause_Click"/>
-        <Slider x:Name="Seeker" HorizontalAlignment="Center" Margin="0,364,0,0" VerticalAlignment="Top" Width="780" ValueChanged="Seeker_ValueChanged"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="143*"/>
+            <RowDefinition Height="291*"/>
+        </Grid.RowDefinitions>
+        <MediaElement x:Name="viewport" Margin="2,28,2,64" MediaOpened="OpenMedia" OpacityMask="Black" AllowDrop="False" Grid.RowSpan="2"/>
+        <Button x:Name="PlayPause" Content="Pause" HorizontalAlignment="Left" Margin="371,254,0,0" VerticalAlignment="Top" Height="37" Width="44" Background="#FFA8A8A8" Click="PlayPause_Click" Grid.Row="1"/>
+        <Slider x:Name="Seeker" HorizontalAlignment="Center" Margin="0,236,0,0" VerticalAlignment="Top" Width="780" ValueChanged="Seeker_ValueChanged" Grid.Row="1"/>
+        <TextBox x:Name="ManualPlayback" HorizontalAlignment="Left" Margin="618,268,0,0" TextWrapping="Wrap" Text="1.0" VerticalAlignment="Top" Width="54" TextChanged="Playback_TextChanged" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="622,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="1"><Run Text="Playback"/><LineBreak/><Run/></TextBlock>
+        <Button x:Name="Reverse" Content="Reverse" HorizontalAlignment="Left" Margin="420,254,0,0" Width="44" Background="#FFA8A8A8" Click="Reverse_Click" Grid.Row="1" Height="37" VerticalAlignment="Top"/>
+        <Button x:Name="FastForward" Content="FFWD" HorizontalAlignment="Left" Margin="469,255,0,0" VerticalAlignment="Top" Width="44" Background="#FFA8A8A8" Click="FFWD_Click" Grid.Row="1" Height="36"/>
+        <Button x:Name="FastBackward" Content="FREV" HorizontalAlignment="Left" Margin="322,254,0,0" VerticalAlignment="Top" Height="37" Width="44" Background="#FFA8A8A8" Click="FREV_Click" Grid.Row="1"/>
 
     </Grid>
 </Window>

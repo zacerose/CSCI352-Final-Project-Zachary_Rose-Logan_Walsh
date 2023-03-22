@@ -6,7 +6,7 @@ Last Updated: 3/14/2023
 ## Operation
 Videos files need to be dragged and dropped to play in the program. Currently features a basic pause button
 and a timeline for skipping around in the video. The player can actually play audio files as well I was thinking
-it could display some kind of image to tell the user it's playing audio.
+it could display some kind of image to tell the user it's playing audio. Video Playback speed can now be adjusted
 
 ## Bugs
 * Play/Pause button seems to stop working after the program is on for a while
@@ -14,6 +14,8 @@ it could display some kind of image to tell the user it's playing audio.
 * Does not appear to support mkv files. 
 * Player has to be closed in order to load another media file. 
 * Window does not scale properly
+* Playback speed performance isn't great
+* the playback speed adjustment crashes the program if the textbox is empty
 
 ## To Do (At the moment)
 * Fix Bugs
