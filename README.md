@@ -15,7 +15,6 @@ it could display some kind of image to tell the user it's playing audio. Video P
 * Player has to be closed in order to load another media file. 
 * Window does not scale properly
 * Playback speed performance isn't great
-* the playback speed adjustment crashes the program if the textbox is empty
 
 ## To Do (At the moment)
 * Fix Bugs

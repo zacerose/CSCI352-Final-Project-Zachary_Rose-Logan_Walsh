@@ -85,8 +85,21 @@ namespace MediaPlayer
         private void Playback_TextChanged(object sender, TextChangedEventArgs e)
         {
             double playback;
-            playback = double.Parse(ManualPlayback.Text);
-            viewport.SpeedRatio = playback;
+            
+            //This is used to check whether or not the value in the box is a double
+            bool parseTest = double.TryParse(ManualPlayback.Text, out playback);
+
+            if (parseTest == true)
+            {
+                playback = double.Parse(ManualPlayback.Text);
+                viewport.SpeedRatio = playback;
+            }
+            else if (parseTest == false)
+            {
+                //Sets this as the default speed if the value is not a double
+                playback = 1.0;
+                viewport.SpeedRatio = playback;
+            }
         }
 
         //TEMPORARY, Want to use the Playback_TextChanged element for this feature
