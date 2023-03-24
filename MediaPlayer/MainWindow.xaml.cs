@@ -123,5 +123,15 @@ namespace MediaPlayer
             //viewport.SpeedRatio = playback;
 
         }
+
+        private void FileMenu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LoadFile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
