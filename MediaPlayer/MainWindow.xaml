@@ -31,10 +31,10 @@
                 <MenuItem Header="Video Settings"/>
                 <MenuItem Header="Hotkeys"/>
                 <Separator/>
-                <MenuItem Header="Light Theme"/>
-                <MenuItem Header="Dark Theme"/>
-                <MenuItem Header="Dated 90s Theme"/>
-                <MenuItem Header="Mid 2000s Theme"/>
+                <MenuItem Header="Default Theme" Click="DefaultTheme_Click"/>
+                <MenuItem Header="Night Theme" Click="NightTheme_Click"/>
+                <MenuItem Header="Orange Theme" Click="OrangeTheme_Click"/>
+                <MenuItem Header="Mid 2000s Edgy Theme" Click="EdgyTheme_Click"/>
             </MenuItem>
             <MenuItem x:Name="HelpMenu" Header="Help">
                 <MenuItem Header="Instructions"/>

@@ -40,7 +40,7 @@ namespace MediaPlayer
 
         void tickTimer(object sender, EventArgs e)
         {
-            
+
             if (!playing_fowards && isPlaying)
             {
                 Seeker.Value -= vidTimer.Interval.TotalMilliseconds * parse_SpeedRatio();
@@ -48,7 +48,7 @@ namespace MediaPlayer
                 //double pos = viewport.Position.TotalMilliseconds;
                 //viewport.Position -= TimeSpan.FromMilliseconds(42);
             }
-            else 
+            else
                 Seeker.Value = viewport.Position.TotalMilliseconds;
         }
         //This probably won't remain a global variable
@@ -183,6 +183,37 @@ namespace MediaPlayer
             string AboutText = "Video Player Program (2023), developed by Zachary Rose and Logan Walsh.";
             string txt = "About";
             MessageBox.Show(AboutText, txt);
+        }
+        private void DefaultTheme_Click(object sender, RoutedEventArgs e)
+        {
+            ImageBrush LightTheme = new ImageBrush();
+            StandardFactory LightColor = new StandardFactory();
+            LightTheme = LightColor.GetLight().ChangeImage();
+            MainUI.Background = LightTheme;
+        }
+
+        private void NightTheme_Click(object sender, RoutedEventArgs e)
+        {
+            ImageBrush DarkTheme = new ImageBrush();
+            StandardFactory DarkColor = new StandardFactory();
+            DarkTheme = DarkColor.GetDark().ChangeImage();
+            MainUI.Background = DarkTheme;
+        }
+
+        private void OrangeTheme_Click(object sender, RoutedEventArgs e)
+        {
+            ImageBrush LightTheme = new ImageBrush();
+            AdditionalFactory LightColor = new AdditionalFactory();
+            LightTheme = LightColor.GetLight().ChangeImage();
+            MainUI.Background = LightTheme;
+        }
+
+        private void EdgyTheme_Click(object sender, RoutedEventArgs e)
+        {
+            ImageBrush DarkTheme = new ImageBrush();
+            AdditionalFactory DarkColor = new AdditionalFactory();
+            DarkTheme = DarkColor.GetDark().ChangeImage();
+            MainUI.Background = DarkTheme;
         }
     }
 }
