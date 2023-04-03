@@ -19,7 +19,7 @@
         <Button x:Name="PlayPause" Content="Pause" HorizontalAlignment="Left" Margin="371,254,0,0" VerticalAlignment="Top" Height="37" Width="44" Background="#FFA8A8A8" Click="PlayPause_Click" Grid.Row="1"/>
         <Button x:Name="Reverse" Content="Reverse" HorizontalAlignment="Left" Margin="420,254,0,0" Width="44" Background="#FFA8A8A8" Click="Reverse_Click" Grid.Row="1" Height="37" VerticalAlignment="Top"/>
         <Button x:Name="FastForward" Content="FFWD" HorizontalAlignment="Left" Margin="469,255,0,0" VerticalAlignment="Top" Width="44" Background="#FFA8A8A8" Click="FFWD_Click" Grid.Row="1" Height="36"/>
-        <Menu x:Name="TopMenu" Margin="0,0,0,118" VerticalAlignment="Top" Grid.Row="0">
+        <Menu x:Name="TopMenu" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Row="0">
             <MenuItem x:Name="FileMenu" Header="File" Height="24" Width="34" Click="FileMenu_Click">
                 <MenuItem Header="LoadFile" Click="LoadFile_Click"/>
                 <MenuItem Header="Load Queue"/>
