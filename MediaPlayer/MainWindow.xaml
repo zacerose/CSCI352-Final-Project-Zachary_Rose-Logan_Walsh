@@ -22,9 +22,24 @@
         <Menu x:Name="TopMenu" Margin="0,0,0,118" VerticalAlignment="Top" Grid.Row="0">
             <MenuItem x:Name="FileMenu" Header="File" Height="24" Width="34" Click="FileMenu_Click">
                 <MenuItem Header="LoadFile" Click="LoadFile_Click"/>
+                <MenuItem Header="Load Queue"/>
+                <Separator/>
+                <MenuItem Header="Exit"/>
             </MenuItem>
-            <MenuItem x:Name="OptionsMenu" Header="Options"/>
-            <MenuItem x:Name="HelpMenu" Header="Help"/>
+            <MenuItem x:Name="OptionsMenu" Header="Options">
+                <MenuItem Header="General Settings"/>
+                <MenuItem Header="Video Settings"/>
+                <MenuItem Header="Hotkeys"/>
+                <Separator/>
+                <MenuItem Header="Light Theme"/>
+                <MenuItem Header="Dark Theme"/>
+                <MenuItem Header="Dated 90s Theme"/>
+                <MenuItem Header="Mid 2000s Theme"/>
+            </MenuItem>
+            <MenuItem x:Name="HelpMenu" Header="Help">
+                <MenuItem Header="Instructions"/>
+                <MenuItem Header="About" Click="About_Click"/>
+            </MenuItem>
         </Menu>
 
     </Grid>

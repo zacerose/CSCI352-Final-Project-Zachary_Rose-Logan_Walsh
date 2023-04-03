@@ -42,11 +42,12 @@ namespace MediaPlayer
         {
             Seeker.Value = viewport.Position.TotalMilliseconds;
 
-            if (!playing_fowards && isPlaying) {
+            if (!playing_fowards && isPlaying)
+            {
                 Seeker.Value -= 42;
                 //double pos = viewport.Position.TotalMilliseconds;
                 //viewport.Position -= TimeSpan.FromMilliseconds(42);
-            }   
+            }
         }
         //This probably won't remain a global variable
         bool isPlaying;
@@ -94,7 +95,7 @@ namespace MediaPlayer
         private void Playback_TextChanged(object sender, TextChangedEventArgs e)
         {
             double playback;
-            
+
             //This is used to check whether or not the value in the box is a double
             bool parseTest = double.TryParse(ManualPlayback.Text, out playback);
 
@@ -115,7 +116,7 @@ namespace MediaPlayer
         //TEMPORARY, Want to use the Playback_TextChanged element for this feature
         private void Reverse_Click(object sender, RoutedEventArgs e)
         {
-            playing_fowards = !playing_fowards;          
+            playing_fowards = !playing_fowards;
         }
 
         private void FREV_Click(object sender, RoutedEventArgs e)
@@ -155,7 +156,13 @@ namespace MediaPlayer
                 viewport.Play();
                 isPlaying = true;
 
-            }          
+            }
+        }
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            string AboutText = "Video Player Program (2023), developed by Zachary Rose and Logan Walsh.";
+            string txt = "About";
+            MessageBoxResult result = MessageBox.Show(AboutText, txt);
         }
     }
 }
