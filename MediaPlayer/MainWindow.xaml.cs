@@ -32,7 +32,7 @@ namespace MediaPlayer
         {
             InitializeComponent();
             vidTimer = new DispatcherTimer();
-            vidTimer.Interval = TimeSpan.FromMilliseconds(42);
+            //vidTimer.Interval = TimeSpan.FromMilliseconds(18);
             vidTimer.Tick += new EventHandler(tickTimer);
             viewport.LoadedBehavior = MediaState.Manual;
             viewport.UnloadedBehavior = MediaState.Manual;
@@ -40,14 +40,16 @@ namespace MediaPlayer
 
         void tickTimer(object sender, EventArgs e)
         {
-            Seeker.Value = viewport.Position.TotalMilliseconds;
-
+            
             if (!playing_fowards && isPlaying)
             {
-                Seeker.Value -= 42;
+                Seeker.Value -= vidTimer.Interval.TotalMilliseconds * parse_SpeedRatio();
+                viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
                 //double pos = viewport.Position.TotalMilliseconds;
                 //viewport.Position -= TimeSpan.FromMilliseconds(42);
             }
+            else 
+                Seeker.Value = viewport.Position.TotalMilliseconds;
         }
         //This probably won't remain a global variable
         bool isPlaying;
@@ -56,11 +58,13 @@ namespace MediaPlayer
             if (isPlaying == true)
             {
                 viewport.Pause();
+                vidTimer.Stop();
                 isPlaying = false;
             }
             else if (isPlaying == false)
             {
                 viewport.Play();
+                vidTimer.Start();
                 isPlaying = true;
             }
 
@@ -84,6 +88,7 @@ namespace MediaPlayer
             Seeker.Minimum = 0;
             Seeker.Maximum = mediaRunTime.TotalMilliseconds;
             //Starts a timer needed to run the video
+            vidTimer.Interval = TimeSpan.FromSeconds(mediaRunTime.TotalSeconds / 600);
             vidTimer.Start();
         }
 
@@ -94,6 +99,10 @@ namespace MediaPlayer
 
         private void Playback_TextChanged(object sender, TextChangedEventArgs e)
         {
+            viewport.SpeedRatio = parse_SpeedRatio();
+        }
+        private double parse_SpeedRatio()
+        {
             double playback;
 
             //This is used to check whether or not the value in the box is a double
@@ -103,20 +112,30 @@ namespace MediaPlayer
             {
                 // only change the playback speed if between these values
                 if (playback > 0 && playback < 3)
-                    viewport.SpeedRatio = playback;
+                    return playback;
             }
             else if (parseTest == false)
             {
                 //Sets this as the default speed if the value is not a double
                 playback = 1.0;
-                viewport.SpeedRatio = playback;
+                return playback;
             }
-        }
 
+            return 1.0;
+        }
         //TEMPORARY, Want to use the Playback_TextChanged element for this feature
         private void Reverse_Click(object sender, RoutedEventArgs e)
         {
-            playing_fowards = !playing_fowards;
+            if (playing_fowards)
+            {
+                playing_fowards = false;
+                //viewport.SpeedRatio = 0;
+            }
+            else
+            {
+                playing_fowards = true;
+                //viewport.SpeedRatio = parse_SpeedRatio();
+            }
         }
 
         private void FREV_Click(object sender, RoutedEventArgs e)
@@ -154,15 +173,16 @@ namespace MediaPlayer
 
                 viewport.Volume = 1; //Temporary, will use a slider
                 viewport.Play();
-                isPlaying = true;
 
+                vidTimer.Start();
+                isPlaying = true;
             }
         }
         private void About_Click(object sender, RoutedEventArgs e)
         {
             string AboutText = "Video Player Program (2023), developed by Zachary Rose and Logan Walsh.";
             string txt = "About";
-            MessageBoxResult result = MessageBox.Show(AboutText, txt);
+            MessageBox.Show(AboutText, txt);
         }
     }
 }
