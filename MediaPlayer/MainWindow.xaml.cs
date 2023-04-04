@@ -96,6 +96,7 @@ namespace MediaPlayer
             else
             {
                 viewport.Play();
+                viewport.SpeedRatio = parse_SpeedRatio();
                 //vidTimer.Start();
                 isPlaying = true;
                 if (!draggingSeeker)
@@ -160,7 +161,7 @@ namespace MediaPlayer
             if (parseTest == true)
             {
                 // only change the playback speed if between these values
-                if (playback > 0 && playback < 3)
+                if (playback > 0 && playback <= 3)
                     return playback;
             }
             else if (parseTest == false)
@@ -200,7 +201,12 @@ namespace MediaPlayer
 
         private void FFWD_Click(object sender, RoutedEventArgs e)
         {
-
+            double speed = parse_SpeedRatio();
+            if (speed <= 2.75)
+            {
+                speed += 0.25;
+                ManualPlayback.Text = speed.ToString();
+            }
         }
         void PropertyValues()
         {
