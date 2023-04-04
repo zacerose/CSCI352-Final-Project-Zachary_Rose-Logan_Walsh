@@ -78,16 +78,22 @@ namespace MediaPlayer
         bool isPlaying;
         private void PlayPause_Click(object sender, RoutedEventArgs e)
         {
+            // pause the media
             if (isPlaying == true)
             {
                 viewport.Pause();
                 isPlaying = false;
+                if (!draggingSeeker)
+                    PlayPause.Content = "Play";
             }
+            // unpause the media
             else
             {
                 viewport.Play();
                 //vidTimer.Start();
                 isPlaying = true;
+                if (!draggingSeeker)
+                    PlayPause.Content = "Pause";
             }
 
         }
