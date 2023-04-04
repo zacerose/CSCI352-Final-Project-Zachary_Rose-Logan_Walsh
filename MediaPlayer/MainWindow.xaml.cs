@@ -33,6 +33,8 @@ namespace MediaPlayer
 
         bool playing_fowards = true;
         bool draggingSeeker = false;
+        // whether or not the video is paused
+        bool isPlaying;
         public MainWindow()
         {
             InitializeComponent();
@@ -80,10 +82,12 @@ namespace MediaPlayer
         {
             Seeker.Value = viewport.Position.TotalMilliseconds;
         }
-        //This probably won't remain a global variable
-        bool isPlaying;
+        
         private void PlayPause_Click(object sender, RoutedEventArgs e)
         {
+            // don't do anything if the media isn't loaded yet
+            if (!viewport.CanPause)
+                return;
             // pause the media
             if (isPlaying == true)
             {
