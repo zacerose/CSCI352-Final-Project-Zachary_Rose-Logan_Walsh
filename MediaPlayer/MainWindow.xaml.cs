@@ -27,29 +27,52 @@ namespace MediaPlayer
     {
         //This is the timer used for running the video
         DispatcherTimer vidTimer;
+        DispatcherTimer reverseTimer;
+
+        double videoPosition;
+
         bool playing_fowards = true;
+        bool draggingSeeker = false;
         public MainWindow()
         {
             InitializeComponent();
             vidTimer = new DispatcherTimer();
             //vidTimer.Interval = TimeSpan.FromMilliseconds(18);
-            vidTimer.Tick += new EventHandler(tickTimer);
+            vidTimer.Interval = TimeSpan.FromMilliseconds(100);
+
+            vidTimer.Tick += new EventHandler(TickTimer);
+
+            reverseTimer = new DispatcherTimer();
+            reverseTimer.Tick += new EventHandler(ReverseTimer);
+
+            //seekerUpdateTimer.Start();
+
+            Seeker.SmallChange = 100;
+            Seeker.LargeChange = 200;
+
             viewport.LoadedBehavior = MediaState.Manual;
             viewport.UnloadedBehavior = MediaState.Manual;
         }
 
-        void tickTimer(object sender, EventArgs e)
-        {
-
-            if (!playing_fowards && isPlaying)
+        void ReverseTimer(object sender, EventArgs e) {
+            if (isPlaying)
             {
-                Seeker.Value -= vidTimer.Interval.TotalMilliseconds * parse_SpeedRatio();
+                Seeker.Value = viewport.Position.TotalMilliseconds - reverseTimer.Interval.TotalMilliseconds * parse_SpeedRatio();
                 viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
-                //double pos = viewport.Position.TotalMilliseconds;
-                //viewport.Position -= TimeSpan.FromMilliseconds(42);
             }
-            else
-                Seeker.Value = viewport.Position.TotalMilliseconds;
+        }
+        void TickTimer(object sender, EventArgs e)
+        {
+            if (isPlaying)
+            {
+                updateSeeker();
+
+                videoPosition = viewport.Position.TotalMilliseconds;
+            }
+        }
+        void updateSeeker()
+        {
+            Seeker.Value = viewport.Position.TotalMilliseconds;
         }
         //This probably won't remain a global variable
         bool isPlaying;
@@ -58,13 +81,12 @@ namespace MediaPlayer
             if (isPlaying == true)
             {
                 viewport.Pause();
-                vidTimer.Stop();
                 isPlaying = false;
             }
-            else if (isPlaying == false)
+            else
             {
                 viewport.Play();
-                vidTimer.Start();
+                //vidTimer.Start();
                 isPlaying = true;
             }
 
@@ -77,8 +99,6 @@ namespace MediaPlayer
             viewport.Source = new Uri(vidFile);
 
             viewport.Volume = 1; //Temporary, will use a slider
-            viewport.Play();
-            isPlaying = true;
         }
 
         private void OpenMedia(object sender, RoutedEventArgs e)
@@ -88,8 +108,14 @@ namespace MediaPlayer
             Seeker.Minimum = 0;
             Seeker.Maximum = mediaRunTime.TotalMilliseconds;
             //Starts a timer needed to run the video
-            vidTimer.Interval = TimeSpan.FromSeconds(mediaRunTime.TotalSeconds / 600);
+
+            reverseTimer.Interval = vidTimer.Interval;
+
             vidTimer.Start();
+            viewport.Play();
+            isPlaying = true;
+            viewport.IsMuted = false;
+            playing_fowards = true;
         }
 
         private void Seeker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -129,12 +155,18 @@ namespace MediaPlayer
             if (playing_fowards)
             {
                 playing_fowards = false;
-                //viewport.SpeedRatio = 0;
+                vidTimer.Stop();
+                reverseTimer.Start();
+                viewport.IsMuted = true;
+                //viewport.Pause();
             }
             else
             {
                 playing_fowards = true;
-                //viewport.SpeedRatio = parse_SpeedRatio();
+                vidTimer.Start();
+                reverseTimer.Stop();
+                viewport.IsMuted = false;
+                //viewport.Play();
             }
         }
 
@@ -173,8 +205,6 @@ namespace MediaPlayer
 
                 viewport.Volume = 1; //Temporary, will use a slider
                 viewport.Play();
-
-                vidTimer.Start();
                 isPlaying = true;
             }
         }
@@ -214,6 +244,32 @@ namespace MediaPlayer
             AdditionalFactory DarkColor = new AdditionalFactory();
             DarkTheme = DarkColor.GetDark().ChangeImage();
             MainUI.Background = DarkTheme;
+        }
+
+        // for clicking the seeker
+        private void Seeker_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
+        }
+        // for dragging the seeker
+        private void Seeker_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                PlayPause_Click(this, e);
+
+                draggingSeeker = true;
+            }
+        }
+
+        private void Seeker_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (draggingSeeker)
+            {
+                draggingSeeker = false;
+                viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
+                PlayPause_Click(this, e);
+            }
         }
     }
 }
