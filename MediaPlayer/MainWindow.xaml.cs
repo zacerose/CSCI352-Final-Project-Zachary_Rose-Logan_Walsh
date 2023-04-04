@@ -49,6 +49,12 @@ namespace MediaPlayer
 
             Seeker.SmallChange = 100;
             Seeker.LargeChange = 200;
+            Seeker.Minimum = 0;
+            // Seeker.Maximum set upon loading media
+
+            slider_volume.Minimum = 0;
+            slider_volume.Maximum = 1;
+            slider_volume.Value = 0.5;
 
             viewport.LoadedBehavior = MediaState.Manual;
             viewport.UnloadedBehavior = MediaState.Manual;
@@ -111,7 +117,6 @@ namespace MediaPlayer
         {
             TimeSpan mediaRunTime = viewport.NaturalDuration.TimeSpan;
             // Represents each millisecond of the video opened
-            Seeker.Minimum = 0;
             Seeker.Maximum = mediaRunTime.TotalMilliseconds;
             //Starts a timer needed to run the video
 
@@ -119,6 +124,18 @@ namespace MediaPlayer
 
             vidTimer.Start();
             viewport.Play();
+
+            // if the video has no audio, hide the volume slider
+            if (viewport.HasAudio)
+            {
+                slider_volume.Visibility = Visibility.Visible;
+                slider_volume.Value = 0.5;
+            }
+            else
+            {
+                slider_volume.Visibility = Visibility.Collapsed;
+                slider_volume.Value = 0;
+            }
             isPlaying = true;
             viewport.IsMuted = false;
             playing_fowards = true;
@@ -282,6 +299,11 @@ namespace MediaPlayer
                 viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
                 PlayPause_Click(this, e);
             }
+        }
+
+        private void slider_volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            viewport.Volume = slider_volume.Value;
         }
     }
 }
