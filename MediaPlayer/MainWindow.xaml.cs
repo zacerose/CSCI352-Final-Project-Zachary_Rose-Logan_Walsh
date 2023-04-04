@@ -219,7 +219,7 @@ namespace MediaPlayer
             ImageBrush LightTheme = new ImageBrush();
             StandardFactory LightColor = new StandardFactory();
             LightTheme = LightColor.GetLight().ChangeImage();
-            MainUI.Background = LightTheme;
+            SetBackground(LightTheme);
         }
 
         private void NightTheme_Click(object sender, RoutedEventArgs e)
@@ -227,7 +227,7 @@ namespace MediaPlayer
             ImageBrush DarkTheme = new ImageBrush();
             StandardFactory DarkColor = new StandardFactory();
             DarkTheme = DarkColor.GetDark().ChangeImage();
-            MainUI.Background = DarkTheme;
+            SetBackground(DarkTheme);
         }
 
         private void OrangeTheme_Click(object sender, RoutedEventArgs e)
@@ -235,7 +235,7 @@ namespace MediaPlayer
             ImageBrush LightTheme = new ImageBrush();
             AdditionalFactory LightColor = new AdditionalFactory();
             LightTheme = LightColor.GetLight().ChangeImage();
-            MainUI.Background = LightTheme;
+            SetBackground(LightTheme);
         }
 
         private void EdgyTheme_Click(object sender, RoutedEventArgs e)
@@ -243,7 +243,13 @@ namespace MediaPlayer
             ImageBrush DarkTheme = new ImageBrush();
             AdditionalFactory DarkColor = new AdditionalFactory();
             DarkTheme = DarkColor.GetDark().ChangeImage();
-            MainUI.Background = DarkTheme;
+            SetBackground(DarkTheme);
+        }
+
+        //Will be used to also change the buttons with whatever color is wanted. 
+        private void SetBackground(ImageBrush backColor)
+        {
+            MainUI.Background = backColor;
         }
 
         // for clicking the seeker
