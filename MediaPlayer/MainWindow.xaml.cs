@@ -73,10 +73,16 @@ namespace MediaPlayer
         {
             // if video is at the end, change text of play button to replay
             // later, when queues are implemented, this will have to check if there is another video to play afterwards
-            if (viewport.Position == viewport.NaturalDuration.TimeSpan)
+            try
             {
-                PlayPause.Content = "Replay";
-                isPlaying = false;
+                if (viewport.Position == viewport.NaturalDuration.TimeSpan)
+                {
+                    PlayPause.Content = "Replay";
+                    isPlaying = false;
+                }
+            }
+            catch (System.InvalidOperationException error) {
+                // catches error that happens between selecting videos
             }
             if (isPlaying)
             {
@@ -357,7 +363,15 @@ namespace MediaPlayer
         private void Seeker_MouseUp(object sender, MouseButtonEventArgs e)
         {
             viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
-            viewport.SpeedRatio = parse_SpeedRatio();
+
+            double speed = parse_SpeedRatio();
+            // weird solution that allows the player to maintain speeds over 2 between pauses
+            if (speed > 2)
+            {
+                viewport.SpeedRatio = 2;
+                Thread.Sleep(6);
+            }
+            viewport.SpeedRatio = speed;
         }
         // for dragging the seeker
         private void Seeker_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -377,7 +391,6 @@ namespace MediaPlayer
                 draggingSeeker = false;
                 viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
                 PlayPause_Click(this, e);
-                viewport.SpeedRatio = parse_SpeedRatio();
             }
         }
 
