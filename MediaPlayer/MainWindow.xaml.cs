@@ -71,6 +71,13 @@ namespace MediaPlayer
         }
         void TickTimer(object sender, EventArgs e)
         {
+            // if video is at the end, change text of play button to replay
+            // later, when queues are implemented, this will have to check if there is another video to play afterwards
+            if (viewport.Position == viewport.NaturalDuration.TimeSpan)
+            {
+                PlayPause.Content = "Replay";
+                isPlaying = false;
+            }
             if (isPlaying)
             {
                 updateSeeker();
@@ -85,9 +92,20 @@ namespace MediaPlayer
         
         private void PlayPause_Click(object sender, RoutedEventArgs e)
         {
+            double speed = parse_SpeedRatio();
+
             // don't do anything if the media isn't loaded yet
             if (!viewport.CanPause)
                 return;
+            // if the video is over, play again from the beginning
+            if (viewport.Position == viewport.NaturalDuration.TimeSpan)
+            {
+                if (playing_fowards)
+                    Seeker.Value = 0;
+                isPlaying = true;
+                PlayPause.Content = "Pause";
+                return;
+            }
             // pause the media
             if (isPlaying == true)
             {
@@ -100,13 +118,12 @@ namespace MediaPlayer
             else
             {
                 viewport.Play();
-                viewport.SpeedRatio = parse_SpeedRatio();
                 //vidTimer.Start();
                 isPlaying = true;
+                viewport.SpeedRatio = speed;
                 if (!draggingSeeker)
                     PlayPause.Content = "Pause";
             }
-
         }
 
         private void DropDown(object sender, DragEventArgs e)
@@ -167,22 +184,22 @@ namespace MediaPlayer
             {
                 // only change the playback speed if between these values
                 if (playback >= 0 && playback <= 3)
-                    return playback;
+                    return playback;              
             }
             else if (parseTest == false)
             {
                 //Sets this as the default speed if the value is not a double
                 playback = 1.0;
-                return playback;
             }
 
-            return 1.0;
+            return playback;
         }
         //TEMPORARY, Want to use the Playback_TextChanged element for this feature
         private void Reverse_Click(object sender, RoutedEventArgs e)
         {
             if (playing_fowards)
             {
+
                 playing_fowards = false;
                 vidTimer.Stop();
                 reverseTimer.Start();
@@ -194,10 +211,10 @@ namespace MediaPlayer
                 playing_fowards = true;
                 vidTimer.Start();
                 reverseTimer.Stop();
-                viewport.IsMuted = false;
-                viewport.SpeedRatio = parse_SpeedRatio();
+                viewport.IsMuted = false;      
                 //viewport.Play();
             }
+            viewport.SpeedRatio = parse_SpeedRatio();
         }
 
         private void FREV_Click(object sender, RoutedEventArgs e)
