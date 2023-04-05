@@ -130,12 +130,14 @@ namespace MediaPlayer
                 if (!draggingSeeker)
                     PlayPause.Content = "Pause";
             }
+#if SPEED3
             // weird solution that allows the player to maintain speeds over 2 between pauses
             if (speed > 2)
             {
                 viewport.SpeedRatio = 2;
                 Thread.Sleep(6);
             }
+#endif
             viewport.SpeedRatio = speed;
 
         }
@@ -197,7 +199,7 @@ namespace MediaPlayer
             if (parseTest == true)
             {
                 // only change the playback speed if between these values
-                if (playback >= 0 && playback <= 3)
+                if (playback >= 0 && playback <= 2)
                     return playback;              
             }
             else if (parseTest == false)
@@ -237,6 +239,8 @@ namespace MediaPlayer
             // if already playing backwards, play faster (backwards)
             if (!playing_fowards)
             {
+#if SPEED3
+
                 // speed caps at 3
                 if (speed <= 2.75)
                 {
@@ -246,9 +250,20 @@ namespace MediaPlayer
                 else
                     ManualPlayback.Text = 3.ToString();
             }
+#else
+                // speed caps at 2
+                if (speed <= 1.75)
+                {
+                    speed += 0.25;
+                    ManualPlayback.Text = speed.ToString();
+                }
+                else
+                    ManualPlayback.Text = 2.ToString();
+            }
+#endif
             // if playing forwards, go closer to playing backwards
             else
-            {
+                {
                 speed -= 0.25;
                 if (speed < 0)
                 {
@@ -265,6 +280,7 @@ namespace MediaPlayer
             // if already playing forwards, play faster
             if (playing_fowards)
             {
+#if SPEED3
                 // speed caps at 3
                 if (speed <= 2.75)
                 {
@@ -273,7 +289,17 @@ namespace MediaPlayer
                 }
                 else
                     ManualPlayback.Text = 3.ToString();
+#else
+                // speed caps at 2
+                if (speed <= 1.75)
+                {
+                    speed += 0.25;
+                    ManualPlayback.Text = speed.ToString();
+                }
+                else
+                    ManualPlayback.Text = 2.ToString();
             }
+#endif
             // if in reverse, go closer to playing forwards
             else
             {
@@ -365,12 +391,14 @@ namespace MediaPlayer
             viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
 
             double speed = parse_SpeedRatio();
+#if SPEED3
             // weird solution that allows the player to maintain speeds over 2 between pauses
             if (speed > 2)
             {
                 viewport.SpeedRatio = 2;
                 Thread.Sleep(6);
             }
+#endif
             viewport.SpeedRatio = speed;
         }
         // for dragging the seeker
