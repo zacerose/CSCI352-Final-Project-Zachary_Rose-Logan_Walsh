@@ -65,7 +65,7 @@ namespace MediaPlayer
         void ReverseTimer(object sender, EventArgs e) {
             if (isPlaying)
             {
-                Seeker.Value = viewport.Position.TotalMilliseconds - reverseTimer.Interval.TotalMilliseconds * parse_SpeedRatio();
+                Seeker.Value = viewport.Position.TotalMilliseconds - (reverseTimer.Interval.TotalMilliseconds * parse_SpeedRatio());
                 viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
             }
         }
@@ -144,6 +144,7 @@ namespace MediaPlayer
             isPlaying = true;
             viewport.IsMuted = false;
             playing_fowards = true;
+            viewport.SpeedRatio = parse_SpeedRatio();
         }
 
         private void Seeker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -165,7 +166,7 @@ namespace MediaPlayer
             if (parseTest == true)
             {
                 // only change the playback speed if between these values
-                if (playback > 0 && playback <= 3)
+                if (playback >= 0 && playback <= 3)
                     return playback;
             }
             else if (parseTest == false)
@@ -194,21 +195,63 @@ namespace MediaPlayer
                 vidTimer.Start();
                 reverseTimer.Stop();
                 viewport.IsMuted = false;
+                viewport.SpeedRatio = parse_SpeedRatio();
                 //viewport.Play();
             }
         }
 
         private void FREV_Click(object sender, RoutedEventArgs e)
         {
-
+            double speed = parse_SpeedRatio();
+            // if already playing backwards, play faster (backwards)
+            if (!playing_fowards)
+            {
+                // speed caps at 3
+                if (speed <= 2.75)
+                {
+                    speed += 0.25;
+                    ManualPlayback.Text = speed.ToString();
+                }
+                else
+                    ManualPlayback.Text = 3.ToString();
+            }
+            // if playing forwards, go closer to playing backwards
+            else
+            {
+                speed -= 0.25;
+                if (speed < 0)
+                {
+                    Reverse_Click(this, e);
+                    speed *= -1;
+                }
+                ManualPlayback.Text = speed.ToString();
+            }
         }
 
         private void FFWD_Click(object sender, RoutedEventArgs e)
         {
             double speed = parse_SpeedRatio();
-            if (speed <= 2.75)
+            // if already playing forwards, play faster
+            if (playing_fowards)
             {
-                speed += 0.25;
+                // speed caps at 3
+                if (speed <= 2.75)
+                {
+                    speed += 0.25;
+                    ManualPlayback.Text = speed.ToString();
+                }
+                else
+                    ManualPlayback.Text = 3.ToString();
+            }
+            // if in reverse, go closer to playing forwards
+            else
+            {
+                speed -= 0.25;
+                if (speed < 0)
+                {
+                    Reverse_Click(this, e);
+                    speed *= -1;
+                }
                 ManualPlayback.Text = speed.ToString();
             }
         }
@@ -289,6 +332,7 @@ namespace MediaPlayer
         private void Seeker_MouseUp(object sender, MouseButtonEventArgs e)
         {
             viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
+            viewport.SpeedRatio = parse_SpeedRatio();
         }
         // for dragging the seeker
         private void Seeker_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -308,6 +352,7 @@ namespace MediaPlayer
                 draggingSeeker = false;
                 viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
                 PlayPause_Click(this, e);
+                viewport.SpeedRatio = parse_SpeedRatio();
             }
         }
 
