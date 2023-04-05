@@ -92,6 +92,7 @@ namespace MediaPlayer
         
         private void PlayPause_Click(object sender, RoutedEventArgs e)
         {
+            
             double speed = parse_SpeedRatio();
 
             // don't do anything if the media isn't loaded yet
@@ -120,10 +121,17 @@ namespace MediaPlayer
                 viewport.Play();
                 //vidTimer.Start();
                 isPlaying = true;
-                viewport.SpeedRatio = speed;
                 if (!draggingSeeker)
                     PlayPause.Content = "Pause";
             }
+            // weird solution that allows the player to maintain speeds over 2 between pauses
+            if (speed > 2)
+            {
+                viewport.SpeedRatio = 2;
+                Thread.Sleep(6);
+            }
+            viewport.SpeedRatio = speed;
+
         }
 
         private void DropDown(object sender, DragEventArgs e)
