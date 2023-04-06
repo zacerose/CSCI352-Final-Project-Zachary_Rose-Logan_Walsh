@@ -1,7 +1,7 @@
 # Media_Player_Final_Project
 Names: Logan Walsh, Zachary Rose
 
-Last Updated: 3/14/2023
+Last Updated: 4/6/2023
 
 ## Operation
 Videos files need to be dragged and dropped to play in the program. Currently features a basic pause button
