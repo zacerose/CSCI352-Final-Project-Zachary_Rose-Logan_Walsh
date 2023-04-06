@@ -37,7 +37,7 @@
                 <MenuItem Header="Mid 2000s Edgy Theme" Click="EdgyTheme_Click"/>
             </MenuItem>
             <MenuItem x:Name="HelpMenu" Header="Help">
-                <MenuItem Header="Instructions"/>
+                <MenuItem Header="Instructions" Click="Instructions_Click"/>
                 <MenuItem Header="About" Click="About_Click"/>
             </MenuItem>
         </Menu>

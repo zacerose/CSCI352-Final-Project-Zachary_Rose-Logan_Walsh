@@ -347,6 +347,13 @@ namespace MediaPlayer
             string txt = "About";
             MessageBox.Show(AboutText, txt);
         }
+
+        private void Instructions_Click(object sender, RoutedEventArgs e)
+        {
+            string AboutText = "Load a video with the load file button, click the buttons to do stuff. Sorry, we couldn't afford any better instructions, we're on a strict schedule here.";
+            string txt = "User's Manual";
+            MessageBox.Show(AboutText, txt);
+        }
         private void DefaultTheme_Click(object sender, RoutedEventArgs e)
         {
             ImageBrush LightTheme = new ImageBrush();
