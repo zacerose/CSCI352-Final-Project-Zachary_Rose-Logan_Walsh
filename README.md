@@ -15,13 +15,13 @@ it could display some kind of image to tell the user it's playing audio. Video P
 * Player has to be closed in order to load another media file. 
 * Window does not scale properly
 * Playback speed performance isn't great
+* Video sometimes pauses itself when skipping around on the seeker.
+* Playback speed is glitchy when it is over 2.0
 
 ## To Do (At the moment)
 * Fix Bugs
 * Add Skip Feature
-* Add Playback speed adjustment
-* Add Volume Control
-* Allow a file search
+* Fix Playback speed adjustment
+* Improve Volume Control
 * Improve the UI
-* Pressing the play/pause button after the video is over should reset it
 * Playback features need to hide themselves after a few seconds of not being used. 
