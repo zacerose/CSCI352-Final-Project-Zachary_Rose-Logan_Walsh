@@ -65,12 +65,25 @@ namespace MediaPlayer
         void ReverseTimer(object sender, EventArgs e) {
             if (isPlaying)
             {
-                Seeker.Value = viewport.Position.TotalMilliseconds - reverseTimer.Interval.TotalMilliseconds * parse_SpeedRatio();
+                Seeker.Value = viewport.Position.TotalMilliseconds - (reverseTimer.Interval.TotalMilliseconds * parse_SpeedRatio());
                 viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
             }
         }
         void TickTimer(object sender, EventArgs e)
         {
+            // if video is at the end, change text of play button to replay
+            // later, when queues are implemented, this will have to check if there is another video to play afterwards
+            try
+            {
+                if (viewport.Position == viewport.NaturalDuration.TimeSpan)
+                {
+                    PlayPause.Content = "Replay";
+                    isPlaying = false;
+                }
+            }
+            catch (System.InvalidOperationException error) {
+                // catches error that happens between selecting videos
+            }
             if (isPlaying)
             {
                 updateSeeker();
@@ -85,9 +98,21 @@ namespace MediaPlayer
         
         private void PlayPause_Click(object sender, RoutedEventArgs e)
         {
+            
+            double speed = parse_SpeedRatio();
+
             // don't do anything if the media isn't loaded yet
             if (!viewport.CanPause)
                 return;
+            // if the video is over, play again from the beginning
+            if (viewport.Position == viewport.NaturalDuration.TimeSpan)
+            {
+                if (playing_fowards)
+                    Seeker.Value = 0;
+                isPlaying = true;
+                PlayPause.Content = "Pause";
+                return;
+            }
             // pause the media
             if (isPlaying == true)
             {
@@ -100,12 +125,20 @@ namespace MediaPlayer
             else
             {
                 viewport.Play();
-                viewport.SpeedRatio = parse_SpeedRatio();
                 //vidTimer.Start();
                 isPlaying = true;
                 if (!draggingSeeker)
                     PlayPause.Content = "Pause";
             }
+#if SPEED3
+            // weird solution that allows the player to maintain speeds over 2 between pauses
+            if (speed > 2)
+            {
+                viewport.SpeedRatio = 2;
+                Thread.Sleep(6);
+            }
+#endif
+            viewport.SpeedRatio = speed;
 
         }
 
@@ -144,6 +177,7 @@ namespace MediaPlayer
             isPlaying = true;
             viewport.IsMuted = false;
             playing_fowards = true;
+            viewport.SpeedRatio = parse_SpeedRatio();
         }
 
         private void Seeker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -165,23 +199,23 @@ namespace MediaPlayer
             if (parseTest == true)
             {
                 // only change the playback speed if between these values
-                if (playback > 0 && playback <= 3)
-                    return playback;
+                if (playback >= 0 && playback <= 2)
+                    return playback;              
             }
             else if (parseTest == false)
             {
                 //Sets this as the default speed if the value is not a double
                 playback = 1.0;
-                return playback;
             }
 
-            return 1.0;
+            return playback;
         }
         //TEMPORARY, Want to use the Playback_TextChanged element for this feature
         private void Reverse_Click(object sender, RoutedEventArgs e)
         {
             if (playing_fowards)
             {
+
                 playing_fowards = false;
                 vidTimer.Stop();
                 reverseTimer.Start();
@@ -193,22 +227,88 @@ namespace MediaPlayer
                 playing_fowards = true;
                 vidTimer.Start();
                 reverseTimer.Stop();
-                viewport.IsMuted = false;
+                viewport.IsMuted = false;      
                 //viewport.Play();
             }
+            viewport.SpeedRatio = parse_SpeedRatio();
         }
 
         private void FREV_Click(object sender, RoutedEventArgs e)
         {
+            double speed = parse_SpeedRatio();
+            // if already playing backwards, play faster (backwards)
+            if (!playing_fowards)
+            {
+#if SPEED3
 
+                // speed caps at 3
+                if (speed <= 2.75)
+                {
+                    speed += 0.25;
+                    ManualPlayback.Text = speed.ToString();
+                }
+                else
+                    ManualPlayback.Text = 3.ToString();
+            }
+#else
+                // speed caps at 2
+                if (speed <= 1.75)
+                {
+                    speed += 0.25;
+                    ManualPlayback.Text = speed.ToString();
+                }
+                else
+                    ManualPlayback.Text = 2.ToString();
+            }
+#endif
+            // if playing forwards, go closer to playing backwards
+            else
+                {
+                speed -= 0.25;
+                if (speed < 0)
+                {
+                    Reverse_Click(this, e);
+                    speed *= -1;
+                }
+                ManualPlayback.Text = speed.ToString();
+            }
         }
 
         private void FFWD_Click(object sender, RoutedEventArgs e)
         {
             double speed = parse_SpeedRatio();
-            if (speed <= 2.75)
+            // if already playing forwards, play faster
+            if (playing_fowards)
             {
-                speed += 0.25;
+#if SPEED3
+                // speed caps at 3
+                if (speed <= 2.75)
+                {
+                    speed += 0.25;
+                    ManualPlayback.Text = speed.ToString();
+                }
+                else
+                    ManualPlayback.Text = 3.ToString();
+#else
+                // speed caps at 2
+                if (speed <= 1.75)
+                {
+                    speed += 0.25;
+                    ManualPlayback.Text = speed.ToString();
+                }
+                else
+                    ManualPlayback.Text = 2.ToString();
+            }
+#endif
+            // if in reverse, go closer to playing forwards
+            else
+            {
+                speed -= 0.25;
+                if (speed < 0)
+                {
+                    Reverse_Click(this, e);
+                    speed *= -1;
+                }
                 ManualPlayback.Text = speed.ToString();
             }
         }
@@ -245,6 +345,13 @@ namespace MediaPlayer
         {
             string AboutText = "Video Player Program (2023), developed by Zachary Rose and Logan Walsh.";
             string txt = "About";
+            MessageBox.Show(AboutText, txt);
+        }
+
+        private void Instructions_Click(object sender, RoutedEventArgs e)
+        {
+            string AboutText = "Load a video with the load file button, click the buttons to do stuff. Sorry, we couldn't afford any better instructions, we're on a strict schedule here.";
+            string txt = "User's Manual";
             MessageBox.Show(AboutText, txt);
         }
         private void DefaultTheme_Click(object sender, RoutedEventArgs e)
@@ -289,6 +396,17 @@ namespace MediaPlayer
         private void Seeker_MouseUp(object sender, MouseButtonEventArgs e)
         {
             viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
+
+            double speed = parse_SpeedRatio();
+#if SPEED3
+            // weird solution that allows the player to maintain speeds over 2 between pauses
+            if (speed > 2)
+            {
+                viewport.SpeedRatio = 2;
+                Thread.Sleep(6);
+            }
+#endif
+            viewport.SpeedRatio = speed;
         }
         // for dragging the seeker
         private void Seeker_PreviewMouseMove(object sender, MouseEventArgs e)
