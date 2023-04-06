@@ -250,9 +250,9 @@ The functional requirements for a media player are straight forward for anyone w
 \end{itemize}
 
 \begin{enumerate}
-\item User opens up file browsing menu by left-clicking "Browse" (See Figure \ref{FileSearchMockup}).
+\item User opens up file browsing menu by left-clicking "File," followed by "Load File" (See Figure \ref{FileSearchMockup}).
 \item User navigates to desired video and selects it.
-\item[Termination Outcome:] Video is paused and prepared for playback.
+\item[Termination Outcome:] Video is loaded and begins playback.
 \end{enumerate}
 
 Alternative: User wishes to load a video using a file path
@@ -276,7 +276,7 @@ Note: File selected doesn't exist.
 
 \begin{enumerate}
 \item User opens up the options by left-clicking the "Options" tab with the mouse.
-\item User selects "Edit Keybindings" by left-clicking with the mouse.
+\item User selects "Hotkeys" by left-clicking with the mouse.
 \item User selects the binding they want to change, and presses the desired keyboard key to change it to.
 \item[Termination Outcome:] New keybindings are set for any available functionality, and the new bindings will be saved to a file for automatic loading upon opening the application. 
 \end{enumerate}
@@ -327,8 +327,18 @@ In this subsection, you will be showing what the screen should look like as the 
 \section{Project Timeline}
 Go back to your notes and look up a typical project development life cycle for the Waterfall approach.  How will you follow this life cycle over the remainder of this semester?  This will usually involve a chart showing your proposed timeline, with specific milestones plotted out.  Make sure you have deliverable dates from the course schedule listed, with a plan to meet them (NOTE: these are generally optimistic deadlines).
 
+( Make a graph)
+By April 21th, coding phase should be mostly done.
+->April 26th: Testing Phase 
+April 27th: Final presentation
+
 \section{Project Structure}
-At first, this will be a little empty (it will need to be filled in by the time you turn in your final report).  This is your chance to discuss all of your design decisions (consider this the README's big brother).
+At first, this will be a little empty (it will need to be filled in by the time you turn in your final report).  This is your chance to discuss all of your design decisions (consider this the README's big 
+brother).
+
+Our main class contains several important features that work together to update the Media Element. A seeker is updated on a timer to remain updated with video playback, and in the same way the video playback is updated when the seeker is moved. A timer is also used to implement playing in reverse; every tick of the timer pushes the media backwards by an amount with respect to the video playback speed. 
+
+A Factory class is used to change the appearance of the application during runtime. This was chosen in order to simplify adding more themes by keeping them unbound from the main class.
 
 \subsection{UML Outline}
 Show the full structure of your program.  Make sure to keep on updating this section as your project evolves (you often start out with one plan, but end up modifying things as you move along).  As a note, while Dia fails miserably at generating pdfs (probably my fault), I have had much success with png files.  Make sure to wrap your images in a \texttt{figure} environment, and to reference with the \texttt{ref} command.  For example, see Figure \ref{cat2}.
