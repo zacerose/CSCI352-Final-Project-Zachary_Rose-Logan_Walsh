@@ -329,7 +329,7 @@ namespace MediaPlayer
         {
             Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog();
             fileDialog.DefaultExt = ".mp4";
-            fileDialog.Filter = "MP4 Files (*.mp4)|*.mp4|WMV Files (*.wmv)|*.wmv|AVI Files (*.avi)|*.avi";
+            fileDialog.Filter = "MP4 Files (*.mp4)|*.mp4|WMV Files (*.wmv)|*.wmv|AVI Files (*.avi)|*.avi|WAV Files (*.wav)|*.wav|MP3 Files (*.mp3)|*.mp3";
             Nullable<bool> success = fileDialog.ShowDialog();
             if (success == true)
             {
