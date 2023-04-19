@@ -95,10 +95,17 @@ namespace MediaPlayer
         {
             Seeker.Value = viewport.Position.TotalMilliseconds;
         }
-        
+
+        //Kept outside for future use
+
         private void PlayPause_Click(object sender, RoutedEventArgs e)
         {
-            
+            //These are used to check the source of the buttons based on the selected theme
+            ImageBrush playBrush = new ImageBrush();
+            playBrush.ImageSource = new BitmapImage(new Uri(playFilepath, UriKind.Relative));
+            ImageBrush pauseBrush = new ImageBrush();
+            pauseBrush.ImageSource = new BitmapImage(new Uri(pauseFilepath, UriKind.Relative));
+
             double speed = parse_SpeedRatio();
 
             // don't do anything if the media isn't loaded yet
@@ -110,7 +117,7 @@ namespace MediaPlayer
                 if (playing_fowards)
                     Seeker.Value = 0;
                 isPlaying = true;
-                PlayPause.Content = "Pause";
+                PlayPause.Background = pauseBrush;
                 return;
             }
             // pause the media
@@ -119,7 +126,7 @@ namespace MediaPlayer
                 viewport.Pause();
                 isPlaying = false;
                 if (!draggingSeeker)
-                    PlayPause.Content = "Play";
+                    PlayPause.Background = playBrush;
             }
             // unpause the media
             else
@@ -128,7 +135,7 @@ namespace MediaPlayer
                 //vidTimer.Start();
                 isPlaying = true;
                 if (!draggingSeeker)
-                    PlayPause.Content = "Pause";
+                    PlayPause.Background = pauseBrush;
             }
 #if SPEED3
             // weird solution that allows the player to maintain speeds over 2 between pauses
@@ -354,12 +361,18 @@ namespace MediaPlayer
             string txt = "User's Manual";
             MessageBox.Show(AboutText, txt);
         }
+        
+        //These are used to make sure the buttons when pressing play/pause stay consistent with their themes
+        string playFilepath = "..//..//assets/default/Def_Play.png";
+        string pauseFilepath = "..//..//assets/default/Def_Pause.png";
         private void DefaultTheme_Click(object sender, RoutedEventArgs e)
         {
             ImageBrush LightTheme = new ImageBrush();
             StandardFactory LightColor = new StandardFactory();
             LightTheme = LightColor.GetLight().ChangeImage();
             SetBackground(LightTheme);
+            playFilepath = "..//..//assets/default/Def_Play.png";
+            pauseFilepath = "..//..//assets/default/Def_Pause.png";
         }
 
         private void NightTheme_Click(object sender, RoutedEventArgs e)
@@ -368,6 +381,8 @@ namespace MediaPlayer
             StandardFactory DarkColor = new StandardFactory();
             DarkTheme = DarkColor.GetDark().ChangeImage();
             SetBackground(DarkTheme);
+            playFilepath = "..//..//assets/Night/Night_Play.png";
+            pauseFilepath = "..//..//assets/Night/Night_Pause.png";
         }
 
         private void OrangeTheme_Click(object sender, RoutedEventArgs e)
@@ -376,6 +391,8 @@ namespace MediaPlayer
             AdditionalFactory LightColor = new AdditionalFactory();
             LightTheme = LightColor.GetLight().ChangeImage();
             SetBackground(LightTheme);
+            playFilepath = "..//..//assets/Orange/Orange_Play.png";
+            pauseFilepath = "..//..//assets/Orange/Orange_Pause.png";
         }
 
         private void EdgyTheme_Click(object sender, RoutedEventArgs e)
@@ -384,6 +401,8 @@ namespace MediaPlayer
             AdditionalFactory DarkColor = new AdditionalFactory();
             DarkTheme = DarkColor.GetDark().ChangeImage();
             SetBackground(DarkTheme);
+            playFilepath = "..//..//assets/Edgy/Edgy_Play.png";
+            pauseFilepath = "..//..//assets/Edgy/Edgy_Pause.png";
         }
 
         //Will be used to also change the buttons with whatever color is wanted. 
