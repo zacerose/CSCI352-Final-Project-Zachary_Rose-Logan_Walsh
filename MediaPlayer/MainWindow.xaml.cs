@@ -515,5 +515,17 @@ namespace MediaPlayer
         {
             viewport.Volume = slider_volume.Value;
         }
+
+        private void MuteClick(object sender, RoutedEventArgs e)
+        {
+            if (slider_volume.Value > 0)
+            {
+                slider_volume.Value = 0;
+            }
+            else
+            {
+                slider_volume.Value = 0.50;
+            }
+        }
     }
 }

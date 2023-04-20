@@ -14,7 +14,7 @@
         <MediaElement x:Name="viewport" Margin="2,25,2,64" MediaOpened="OpenMedia" OpacityMask="Black" AllowDrop="False" Grid.RowSpan="2"/>
         <Slider x:Name="Seeker" HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Width="780" ValueChanged="Seeker_ValueChanged" Grid.Row="1" TickFrequency="60" MouseUp="Seeker_MouseUp" IsMoveToPointEnabled="True" PreviewMouseMove="Seeker_PreviewMouseMove" PreviewMouseLeftButtonUp="Seeker_PreviewMouseLeftButtonUp"/>
         <TextBox x:Name="ManualPlayback" HorizontalAlignment="Left" Margin="618,268,0,0" TextWrapping="Wrap" Text="1.0" VerticalAlignment="Top" Width="54" TextChanged="Playback_TextChanged" Grid.Row="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="622,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="1"><Run Text="Playback"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="PlaybackText" HorizontalAlignment="Left" Margin="622,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="1"><Run Text="Playback"/><LineBreak/><Run/></TextBlock>
         <Button x:Name="FastBackward" Content="" HorizontalAlignment="Left" Margin="322,254,0,0" VerticalAlignment="Top" Height="37" Width="44" Click="FREV_Click" Grid.Row="1">
             <Button.Background>
                 <ImageBrush ImageSource="/Def_REV.png"/>
@@ -67,6 +67,11 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
+        <Button x:Name="MuteButton" Content="" HorizontalAlignment="Left" Margin="704,259,0,10" Width="27" Click="MuteClick" Grid.Row="1">
+            <Button.Background>
+                <ImageBrush ImageSource="/Volume.png"/>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>
