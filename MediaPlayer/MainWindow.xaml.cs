@@ -378,20 +378,12 @@ namespace MediaPlayer
             playFilepath = "..//..//assets/default/Def_Play.png";
             pauseFilepath = "..//..//assets/default/Def_Pause.png";
 
-            Button b1 = PlayPause;
-            Button b2 = Reverse;
-            Button b3 = FastForward;
-            Button b4 = FastBackward;
             string f1 = "..//..//assets/Default/Def_Pause.png";
             string f2 = "..//..//assets/Default/Def_Template.png";
             string f3 = "..//..//assets/Default/Def_FWD.png";
             string f4 = "..//..//assets/Default/Def_REV.png";
-            ImageDecorator i = new ImageDecorator(b1, b2, b3, b4);
-            i.SetButtonImage(f1, f2, f3, f4);
-            PlayPause = b1;
-            Reverse = b2;
-            FastForward = b3;
-            FastBackward = b4;
+            SwapButtons(f1, f2, f3, f4);
+
         }
 
         private void NightTheme_Click(object sender, RoutedEventArgs e)
@@ -403,20 +395,11 @@ namespace MediaPlayer
             playFilepath = "..//..//assets/Night/Night_Play.png";
             pauseFilepath = "..//..//assets/Night/Night_Pause.png";
 
-            Button b1 = PlayPause;
-            Button b2 = Reverse;
-            Button b3 = FastForward;
-            Button b4 = FastBackward;
             string f1 = "..//..//assets/Night/Night_Pause.png";
             string f2 = "..//..//assets/Night/Night_Template.png";
             string f3 = "..//..//assets/Night/Night_FWD.png";
             string f4 = "..//..//assets/Night/Night_REV.png";
-            ImageDecorator i = new ImageDecorator(b1, b2, b3, b4);
-            i.SetButtonImage(f1, f2, f3, f4);
-            PlayPause = b1;
-            Reverse = b2;
-            FastForward = b3;
-            FastBackward = b4;
+            SwapButtons(f1, f2, f3, f4);
         }
 
         private void OrangeTheme_Click(object sender, RoutedEventArgs e)
@@ -428,22 +411,11 @@ namespace MediaPlayer
             playFilepath = "..//..//assets/Orange/Orange_Play.png";
             pauseFilepath = "..//..//assets/Orange/Orange_Pause.png";
 
-            
-            Button b1 = PlayPause;
-            Button b2 = Reverse;
-            Button b3 = FastForward;
-            Button b4 = FastBackward;
-
             string f1 = "..//..//assets/Orange/Orange_Pause.png";
             string f2 = "..//..//assets/Orange/Orange_Template.png";
             string f3 = "..//..//assets/Orange/Orange_FWD.png";
             string f4 = "..//..//assets/Orange/Orange_REV.png";
-            ImageDecorator i = new ImageDecorator(b1, b2, b3, b4);
-            i.SetButtonImage(f1, f2, f3, f4);
-            PlayPause = b1;
-            Reverse = b2;
-            FastForward = b3;
-            FastBackward = b4;
+            SwapButtons(f1, f2, f3, f4);
         }
 
         private void EdgyTheme_Click(object sender, RoutedEventArgs e)
@@ -457,22 +429,26 @@ namespace MediaPlayer
             playFilepath = "..//..//assets/Edgy/Edgy_Play.png";
             pauseFilepath = "..//..//assets/Edgy/Edgy_Pause.png";
 
-            Button b1 = PlayPause;
-            Button b2 = Reverse;
-            Button b3 = FastForward;
-            Button b4 = FastBackward;
             string f1 = "..//..//assets/Edgy/Edgy_Pause.png";
             string f2 = "..//..//assets/Edgy/Edgy_Template.png";
             string f3 = "..//..//assets/Edgy/Edgy_FWD.png";
             string f4 = "..//..//assets/Edgy/Edgy_REV.png";
-            ImageDecorator i = new ImageDecorator(b1, b2, b3, b4);
-            i.SetButtonImage(f1, f2, f3, f4);
+            SwapButtons(f1, f2, f3, f4);
+        }
+
+        private void SwapButtons(string f1, string f2, string f3, string f4)
+        {
+            Button b1 = PlayPause;
+            Button b2 = Reverse;
+            Button b3 = FastForward;
+            Button b4 = FastBackward;
+            ImageDecorator i = new ImageDecorator(b1, b2, b3, b4, f1, f2, f3, f4);
+            i.SetButtonImage();
             PlayPause = b1;
             Reverse = b2;
             FastForward = b3;
             FastBackward = b4;
         }
-
         //Will be used to also change the buttons with whatever color is wanted. 
         private void SetBackground(ImageBrush backColor)
         {

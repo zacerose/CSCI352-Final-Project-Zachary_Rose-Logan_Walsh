@@ -23,6 +23,7 @@ using System.Windows.Shell;
 namespace MediaPlayer
 {
     using System;
+    using System.IO;
 
     namespace Decorator
     {
@@ -32,15 +33,23 @@ namespace MediaPlayer
             Button newButtonRev;
             Button newButtonFFWD;
             Button newButtonFREV;
+            string fpath1;
+            string fpath2;
+            string fpath3;
+            string fpath4;
 
-            public ButtonDecorator(Button p, Button r, Button ff, Button fr)
+            public ButtonDecorator(Button p, Button r, Button ff, Button fr, string nfp1, string nfp2, string nfp3, string nfp4)
             {
                 newButtonPause = p;
                 newButtonRev = r;
                 newButtonFFWD = ff;
                 newButtonFREV = fr;
+                nfp1 = fpath1 = nfp1;
+                fpath2 = nfp2;
+                fpath3 = nfp3;
+                fpath4 = nfp4;
             }
-            public virtual void SetButtonImage(string fpath1, string fpath2, string fpath3, string fpath4)
+            public virtual void SetButtonImage()
             {
 
                 Button Button = new Button();
@@ -60,14 +69,11 @@ namespace MediaPlayer
         }
         public class ImageDecorator : ButtonDecorator
         {
-            public ImageDecorator(Button p, Button r, Button ff, Button fr) : base(p, r, ff, fr) { }
-            public override void SetButtonImage(string fpath1, string fpath2, string fpath3, string fpath4)
+            public ImageDecorator(Button p, Button r, Button ff, Button fr, string nfp1, string nfp2, string nfp3, string nfp4) : base(p, r, ff, fr, nfp1, nfp2, nfp3, nfp4) { }
+            public override void SetButtonImage()
             {
-                string nfp1 = fpath1;
-                string nfp2 = fpath2;
-                string nfp3 = fpath3;
-                string nfp4 = fpath4;
-                base.SetButtonImage(nfp1, nfp2, nfp3, nfp4);
+
+                base.SetButtonImage();
 
             }
         }
