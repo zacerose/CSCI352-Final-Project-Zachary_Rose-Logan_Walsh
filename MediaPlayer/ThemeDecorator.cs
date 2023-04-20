@@ -40,33 +40,35 @@ namespace MediaPlayer
                 newButtonFFWD = ff;
                 newButtonFREV = fr;
             }
-            public virtual void SetButtonImage(Button p, Button r, Button ff, Button fr, string fpath1, string fpath2, string fpath3, string fpath4)
+            public virtual void SetButtonImage(string fpath1, string fpath2, string fpath3, string fpath4)
             {
+
                 Button Button = new Button();
+                ImageBrush ButtonThemeP = new ImageBrush();
+                ImageBrush ButtonThemeR = new ImageBrush();
+                ImageBrush ButtonThemeFF = new ImageBrush();
+                ImageBrush ButtonThemeFR = new ImageBrush();
+                ButtonThemeP.ImageSource = new BitmapImage(new Uri(fpath1, UriKind.Relative));
+                ButtonThemeR.ImageSource = new BitmapImage(new Uri(fpath2, UriKind.Relative));
+                ButtonThemeFF.ImageSource = new BitmapImage(new Uri(fpath3, UriKind.Relative));
+                ButtonThemeFR.ImageSource = new BitmapImage(new Uri(fpath4, UriKind.Relative));
+                newButtonPause.Background = (ButtonThemeP);
+                newButtonRev.Background = (ButtonThemeR);
+                newButtonFFWD.Background = (ButtonThemeFF);
+                newButtonFREV.Background = (ButtonThemeFR);
             }
         }
         public class ImageDecorator : ButtonDecorator
         {
             public ImageDecorator(Button p, Button r, Button ff, Button fr) : base(p, r, ff, fr) { }
-            public override void SetButtonImage(Button p, Button r, Button ff, Button fr, string fpath1, string fpath2, string fpath3, string fpath4)
+            public override void SetButtonImage(string fpath1, string fpath2, string fpath3, string fpath4)
             {
                 string nfp1 = fpath1;
                 string nfp2 = fpath2;
                 string nfp3 = fpath3;
                 string nfp4 = fpath4;
-                base.SetButtonImage(p, r, ff, fr, nfp1, nfp2, nfp3, nfp4);
-                ImageBrush ButtonThemeP = new ImageBrush();
-                ImageBrush ButtonThemeR = new ImageBrush();
-                ImageBrush ButtonThemeFF = new ImageBrush();
-                ImageBrush ButtonThemeFR = new ImageBrush();
-                ButtonThemeP.ImageSource = new BitmapImage(new Uri(nfp1, UriKind.Relative));
-                ButtonThemeR.ImageSource = new BitmapImage(new Uri(nfp2, UriKind.Relative));
-                ButtonThemeFF.ImageSource = new BitmapImage(new Uri(nfp3, UriKind.Relative));
-                ButtonThemeFR.ImageSource = new BitmapImage(new Uri(nfp4, UriKind.Relative));
-                p.Background = (ButtonThemeP);
-                r.Background = (ButtonThemeR);
-                ff.Background = (ButtonThemeFF);
-                fr.Background = (ButtonThemeFR);
+                base.SetButtonImage(nfp1, nfp2, nfp3, nfp4);
+
             }
         }
     }

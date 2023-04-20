@@ -387,7 +387,7 @@ namespace MediaPlayer
             string f3 = "..//..//assets/Default/Def_FWD.png";
             string f4 = "..//..//assets/Default/Def_REV.png";
             ImageDecorator i = new ImageDecorator(b1, b2, b3, b4);
-            i.SetButtonImage(b1, b2, b3, b4, f1, f2, f3, f4);
+            i.SetButtonImage(f1, f2, f3, f4);
             PlayPause = b1;
             Reverse = b2;
             FastForward = b3;
@@ -412,7 +412,7 @@ namespace MediaPlayer
             string f3 = "..//..//assets/Night/Night_FWD.png";
             string f4 = "..//..//assets/Night/Night_REV.png";
             ImageDecorator i = new ImageDecorator(b1, b2, b3, b4);
-            i.SetButtonImage(b1, b2, b3, b4, f1, f2, f3, f4);
+            i.SetButtonImage(f1, f2, f3, f4);
             PlayPause = b1;
             Reverse = b2;
             FastForward = b3;
@@ -439,7 +439,7 @@ namespace MediaPlayer
             string f3 = "..//..//assets/Orange/Orange_FWD.png";
             string f4 = "..//..//assets/Orange/Orange_REV.png";
             ImageDecorator i = new ImageDecorator(b1, b2, b3, b4);
-            i.SetButtonImage(b1, b2, b3, b4, f1, f2, f3, f4);
+            i.SetButtonImage(f1, f2, f3, f4);
             PlayPause = b1;
             Reverse = b2;
             FastForward = b3;
@@ -466,7 +466,7 @@ namespace MediaPlayer
             string f3 = "..//..//assets/Edgy/Edgy_FWD.png";
             string f4 = "..//..//assets/Edgy/Edgy_REV.png";
             ImageDecorator i = new ImageDecorator(b1, b2, b3, b4);
-            i.SetButtonImage(b1, b2, b3, b4, f1, f2, f3, f4);
+            i.SetButtonImage(f1, f2, f3, f4);
             PlayPause = b1;
             Reverse = b2;
             FastForward = b3;
