@@ -58,6 +58,7 @@
 
 \usepackage{hyperref}
 \usepackage{enumitem}
+\usepackage{float}
 \setlist[itemize]{leftmargin=3 cm}
 \setlist[enumerate]{leftmargin=3cm}
 
@@ -186,6 +187,7 @@ Some useful terminology:
 \item playback: media is in playback when it is currently being shown to the user  
 \item file browser: a user interface to make selecting a file from the system convenient  
 \item Windows Media Player: a media player that comes with Windows OS by default. Very bare-bones  
+\item VLC Media Player: A popular media player for power users. Comes with a huge amount of customization options.
 \item Fullscreen: refers to when the video is scaled up to cover an entire monitor  
 \end{itemize}
 
@@ -193,7 +195,7 @@ We decided to make a media player because we thought it would be interesting to 
 
 \subsection{Impacts}
 
-Our hope is that this project will become a useful little tool for those who wish to have a light-weight and customizable media player. 
+Our hope is that this project will become a useful little tool for those who wish to have a light-weight and customizable media player. For those who want a middle ground between the simplicity of Windows Media Player and the overwhelming power of VLC.
 
 \subsection{Challenges}
 
@@ -202,7 +204,7 @@ By far the hardest thing will likely be designing an interface to dynamically ch
 
 \section{Scope}
 
-Basic goals for getting started: You can load up a video, play and pause it using buttons, and it can be replayed. 
+%Basic goals for getting started: You can load up a video, play and pause it using buttons, and it can be replayed. 
 
 The project will be done once the program runs without any issues and has enough features to differentiate it from Windows Media Player. In other words, the ability to control the video playback with the keyboard and to create custom keybindings. 
 
@@ -244,24 +246,26 @@ The functional requirements for a media player are straight forward for anyone w
 \end{itemize}
 
 \subsection{Use Cases}
+
 \begin{itemize}
+\label{itm:UseCase1}
 \item[Use Case Number:] 1
 \item[Use Case Name:] Loading up a video
 \item[Description:] The user wants to load a video from their hard drive to prepare for playback.
 \end{itemize}
 
 \begin{enumerate}
-\item User opens up file browsing menu by left-clicking "File," followed by "Load File" (See Figure \ref{FileSearchMockup}).
+\item User opens up file browsing menu by left-clicking "File," followed by "Load File" (See Figure \ref{PlayerInterface}).
 \item User navigates to desired video and selects it.
 \item[Termination Outcome:] Video is loaded and begins playback.
 \end{enumerate}
 
-Alternative: User wishes to load a video using a file path
-\begin{enumerate}
-\item User enters file path into search bar (See Figure \ref{FileSearchMockup}).
-\item User left-clicks "OK" button.
-\item[Termination Outcome:] Video is paused and prepared for playback.
-\end{enumerate}
+%Alternative: User wishes to load a video using a file path
+%\begin{enumerate}
+%\item User enters file path into search bar (See Figure \ref{FileSearchMockup}).
+%\item User left-clicks "OK" button.
+%\item[Termination Outcome:] Video is paused and prepared for playback.
+%\end{enumerate}
 
 Note: File selected doesn't exist.
 \begin{enumerate}
@@ -307,51 +311,67 @@ Alternative: User wishes to use keybindings to control video playback
 \end{enumerate}
 
 
-\subsection{Interface Mockups}
+\subsection{Interface}
 
-\begin{figure}[ht!]
-\includegraphics[height=250px, width=350px]{FileSearchMockup.png}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=3]{FileSearchMockup.png}
 \caption{Sample of interface for selecting video file}
 \label{FileSearchMockup}
+\end{center}
 \end{figure}
 
-\begin{figure}[ht!]
-\includegraphics[height=250px, width=350px]{PlayerMockup.png}
+This is the starting screen after opening the application. See Use Case \ref{itm:UseCase1} for instructions on how to load a file and begin playback.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=.8]{PlayerInterface.png}
+\caption{Sample of interface for selecting video file}
+\label{PlayerInterface}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=.7]{PlayerMockup.png}
 \caption{Sample of interface when a video is in playback}
 \label{PlayerMockup}
+\end{center}
 \end{figure}
 
 \clearpage
 \section{Project Timeline}
-
+This timeline has the dates for every major checkpoint during the development of the media player. The colored bars represent the phases of waterfall development (sans maintenance), and every group work (GW) deliverable is marked as well.
 See Figure \ref{timeline}.
 
-\begin{figure}[ht!]
+\begin{figure}[H]
+\begin{center}
 \includegraphics[scale=1.5]{Project_Timeline.png}
 \caption{Proposed project timeline}
 \label{timeline}
+\end{center}
 \end{figure}
 
 \section{Project Structure}
+The Media Player works by updating a Media Element when the user gives input. It is implemented as a MainWindow class containing a MediaElement object, as well as several helping classes to control the appearance. \medskip
 
-Our main class contains several important features that work together to update the Media Element. A seeker is updated on a timer to remain updated with video playback, and in the same way the video playback is updated when the seeker is moved. A timer is also used to implement playing in reverse; every tick of the timer pushes the media backwards by an amount with respect to the video playback speed.  
-
+Our MainWindow class contains several important features that work together to update the Media Element. A seeker is updated on a timer to remain updated with video playback, and in the same way the video playback is updated when the seeker is moved. A timer is also used to implement playing in reverse; every tick of the timer pushes the media backwards by an amount with respect to the video playback speed.   \par
 A Factory class is used to change the appearance of the application during runtime. This was chosen in order to simplify adding more themes by keeping them unbound from the main class.
 
 \subsection{UML Outline}
 
-See Figure \ref{UML}.\par
-The MainWindow class holds the WPF form. This form holds the button controls, and most importantly it holds the MediaElement object which is used to enable playback. Two DispatcherTimers are also used to keep the seeker updated with the video playback.\par
-The ThemeFactory is an abstract factory interface used to change the theme of the media player. When choosing a theme a new factory is constructed, and it is used to change the appearance of certain elements.
-\begin{figure}[ht!]
+The MainWindow class holds the WPF form. This form holds the button controls, and most importantly it holds the MediaElement object which is used to enable playback. Two DispatcherTimers are also used to keep the seeker updated with the video playback. These structures are located at the top of Figure \ref{UML}.\par
+The ThemeFactory is an abstract factory interface used to change the theme of the media player. When choosing a theme a new factory is constructed, and it is used to change the appearance of certain elements like background colors and button design. These structures are located at the botton of Figure \ref{UML}.
+\begin{figure}[H]
+\begin{center}
 \includegraphics[scale=0.4]{MediaPlayerUML.png}
 \caption{UML of class structure}
 \label{UML}
+\end{center}
 \end{figure}
 
 
 \subsection{Design Patterns Used}
-Make sure to actually use at least 2 design patterns from this class.  This is not normally part of such documentation, but largely just specific to this class -- I want to see you use the patterns!
+We used an abstract factory to provide different look-feel themes for the user to choose from. 
 
 
 \section{Results}
@@ -365,32 +385,32 @@ By the end, what do you plan on doing with this project?  Will you try to sell i
 
 
 
-\begin{thebibliography}{1}
+%\begin{thebibliography}{1}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+%\bibitem{IEEEhowto:kopka}
+%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+%  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
 
-\end{thebibliography}
+%\end{thebibliography}
 
 
 
-\begin{IEEEbiography}{Michael Shell}
-Biography text here.
-\end{IEEEbiography}
+%\begin{IEEEbiography}{Michael Shell}
+%Biography text here.
+%\end{IEEEbiography}
 
 % if you will not have a photo at all:
-\begin{IEEEbiographynophoto}{John Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
+%\begin{IEEEbiographynophoto}{John Doe}
+%Biography text here.
+%\end{IEEEbiographynophoto}
 
 % insert where needed to balance the two columns on the last page with
 % biographies
 %\newpage
 
-\begin{IEEEbiographynophoto}{Jane Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
+%\begin{IEEEbiographynophoto}{Jane Doe}
+%Biography text here.
+%\end{IEEEbiographynophoto}
 
 
 
