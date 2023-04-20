@@ -74,10 +74,13 @@ namespace MediaPlayer
         {
             // if video is at the end, change text of play button to replay
             // later, when queues are implemented, this will have to check if there is another video to play afterwards
+            ImageBrush playBrush = new ImageBrush();
+            playBrush.ImageSource = new BitmapImage(new Uri(playFilepath, UriKind.Relative));
             try
             {
                 if (viewport.Position == viewport.NaturalDuration.TimeSpan)
                 {
+                    PlayPause.Background = playBrush;
                     PlayPause.Content = "Replay";
                     isPlaying = false;
                 }
@@ -425,10 +428,12 @@ namespace MediaPlayer
             playFilepath = "..//..//assets/Orange/Orange_Play.png";
             pauseFilepath = "..//..//assets/Orange/Orange_Pause.png";
 
+            
             Button b1 = PlayPause;
             Button b2 = Reverse;
             Button b3 = FastForward;
             Button b4 = FastBackward;
+
             string f1 = "..//..//assets/Orange/Orange_Pause.png";
             string f2 = "..//..//assets/Orange/Orange_Template.png";
             string f3 = "..//..//assets/Orange/Orange_FWD.png";
