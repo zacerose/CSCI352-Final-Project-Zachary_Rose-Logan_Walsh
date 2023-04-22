@@ -255,7 +255,7 @@ The functional requirements for a media player are straight forward for anyone w
 \end{itemize}
 
 \begin{enumerate}
-\item User opens up file browsing menu by left-clicking "File," followed by "Load File" (See Figure \ref{PlayerInterface}).
+\item User opens up file browsing menu by left-clicking "File," followed by "Load File" (See Figure \ref{FileSearchMockup}).
 \item User navigates to desired video and selects it.
 \item[Termination Outcome:] Video is loaded and begins playback.
 \end{enumerate}
@@ -321,14 +321,14 @@ Alternative: User wishes to use keybindings to control video playback
 \end{center}
 \end{figure}
 
-This is the starting screen after opening the application. See Use Case \ref{itm:UseCase1} for instructions on how to load a file and begin playback.
-\begin{figure}[H]
-\begin{center}
-\includegraphics[scale=.8]{PlayerInterface.png}
-\caption{Sample of interface for selecting video file}
-\label{PlayerInterface}
-\end{center}
-\end{figure}
+%This is the starting screen after opening the application. See Use Case \ref{itm:UseCase1} for instructions on how to %load a file and begin playback.
+%\begin{figure}[H]
+%\begin{center}
+%\includegraphics[scale=.8]{PlayerInterface.png}
+%\caption{Sample of interface for selecting video file}
+%\label{PlayerInterface}
+%\end{center}
+%\end{figure}
 
 \begin{figure}[H]
 \begin{center}
@@ -371,16 +371,18 @@ The ThemeFactory is an abstract factory interface used to change the theme of th
 
 
 \subsection{Design Patterns Used}
-We used an abstract factory to provide different look-feel themes for the user to choose from. 
+We used an abstract factory to provide different look-feel themes for the user to choose from (See Figure \ref{UML}). We also plan to implement a decorator to add special behavior to the button elements when needed.
 
 
 \section{Results}
-This section will start out a little vague, but it should grow as your project evolves.  With each deliverable you hand in, give me a final summary of where your project stands.  By the end, this should be a reflective section discussing how many of your original goals you managed to attain/how many desired use cases you implemented/how many extra features you added.
+Over the course of working on this project, we've learned many different things. We successfully used waterfall development to plan our work, and we learned the difficulties of developing a larger, longer term project. \medskip
+
+We developed a media player that competently plays video and audio in an unfamiliar environment. We were able to implement design patterns to help organize class structure and promote decoupling. \medskip
+
+We weren't able to meet all of our goals. We haven't implemented playing a queue of videos, and the window doesn't yet scale correctly upon resizing. 
 
 \subsection{Future Work}
-Where are you going next with your project?
-For early deliverables, what are your next steps?  (HINT: you will typically want to look back at your timeline and evaluate: did you meet your expected goals?  Are you ahead of schedule?  Did you decide to shift gears and implement a new feature?)
-By the end, what do you plan on doing with this project?  Will you try to sell it?  Set it on fire?  Link to it on your resume and forget it exists?
+This project didn't become anything impressive. We didn't find the time to implement all that we wanted to, so the final project lacks what usefulness we hoped it would have. We don't plan to continue development on this project any further, but we'll take what we learned during development and apply it in the future. 
 
 
 
