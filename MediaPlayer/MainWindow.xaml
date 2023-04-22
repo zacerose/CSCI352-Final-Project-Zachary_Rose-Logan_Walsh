@@ -72,6 +72,7 @@
                 <ImageBrush ImageSource="/Volume.png"/>
             </Button.Background>
         </Button>
+        <Label x:Name="lbl_time_remaining" Content="0/0" HorizontalAlignment="Left" Margin="41,255,0,0" Grid.Row="1" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

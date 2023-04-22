@@ -61,12 +61,14 @@ namespace MediaPlayer
 
             viewport.LoadedBehavior = MediaState.Manual;
             viewport.UnloadedBehavior = MediaState.Manual;
+            lbl_time_remaining.Visibility = Visibility.Hidden;
         }
 
         void ReverseTimer(object sender, EventArgs e) {
             if (isPlaying)
             {
                 Seeker.Value = viewport.Position.TotalMilliseconds - (reverseTimer.Interval.TotalMilliseconds * parse_SpeedRatio());
+                lbl_time_remaining.Content = String.Format("{0}/{1}", viewport.Position.ToString(@"hh\:mm\:ss"), viewport.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
                 viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
             }
         }
@@ -81,7 +83,7 @@ namespace MediaPlayer
                 if (viewport.Position == viewport.NaturalDuration.TimeSpan)
                 {
                     PlayPause.Background = playBrush;
-                    PlayPause.Content = "Replay";
+                    //PlayPause.Content = "Replay";
                     isPlaying = false;
                 }
             }
@@ -91,7 +93,7 @@ namespace MediaPlayer
             if (isPlaying)
             {
                 updateSeeker();
-
+                lbl_time_remaining.Content = String.Format("{0}/{1}", viewport.Position.ToString(@"hh\:mm\:ss"), viewport.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
                 videoPosition = viewport.Position.TotalMilliseconds;
             }
         }
@@ -185,6 +187,8 @@ namespace MediaPlayer
                 slider_volume.Visibility = Visibility.Collapsed;
                 slider_volume.Value = 0;
             }
+            lbl_time_remaining.Visibility = Visibility.Visible;
+            lbl_time_remaining.Content = String.Format("0/{0}", mediaRunTime.ToString(@"hh\:mm\:ss"));
             isPlaying = true;
             viewport.IsMuted = false;
             playing_fowards = true;
@@ -340,7 +344,7 @@ namespace MediaPlayer
         {
             Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog();
             fileDialog.DefaultExt = ".mp4";
-            fileDialog.Filter = "MP4 Files (*.mp4)|*.mp4|WMV Files (*.wmv)|*.wmv|AVI Files (*.avi)|*.avi|WAV Files (*.wav)|*.wav|MP3 Files (*.mp3)|*.mp3";
+            fileDialog.Filter = "All Files (*.*)|*|MP4 Files (*.mp4)|*.mp4|WMV Files (*.wmv)|*.wmv|AVI Files (*.avi)|*.avi|WAV Files (*.wav)|*.wav|MP3 Files (*.mp3)|*.mp3";
             Nullable<bool> success = fileDialog.ShowDialog();
             if (success == true)
             {
