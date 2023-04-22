@@ -30,6 +30,9 @@ namespace MediaPlayer
         DispatcherTimer vidTimer;
         DispatcherTimer reverseTimer;
 
+        // abstract factory used to change the theme when needed
+        ThemeFactory theme;
+
         double videoPosition;
 
         bool playing_fowards = true;
@@ -375,12 +378,13 @@ namespace MediaPlayer
         string pauseFilepath = "..//..//assets/default/Def_Pause.png";
         private void DefaultTheme_Click(object sender, RoutedEventArgs e)
         {
-            ImageBrush LightTheme = new ImageBrush();
-            StandardFactory LightColor = new StandardFactory();
-            LightTheme = LightColor.GetLight().ChangeImage();
-            SetBackground(LightTheme);
+            theme = new StandardFactory();
+            SetBackground(theme.GetLight().ChangeImage());
+
             playFilepath = "..//..//assets/default/Def_Play.png";
             pauseFilepath = "..//..//assets/default/Def_Pause.png";
+            lbl_time_remaining.Foreground = Brushes.Black;
+            lbl_playback_text.Foreground = Brushes.Black;
 
             string f1 = "..//..//assets/Default/Def_Pause.png";
             string f2 = "..//..//assets/Default/Def_Template.png";
@@ -392,12 +396,13 @@ namespace MediaPlayer
 
         private void NightTheme_Click(object sender, RoutedEventArgs e)
         {
-            ImageBrush DarkTheme = new ImageBrush();
-            StandardFactory DarkColor = new StandardFactory();
-            DarkTheme = DarkColor.GetDark().ChangeImage();
-            SetBackground(DarkTheme);
+            theme = new StandardFactory();
+            SetBackground(theme.GetDark().ChangeImage());
+
             playFilepath = "..//..//assets/Night/Night_Play.png";
             pauseFilepath = "..//..//assets/Night/Night_Pause.png";
+            lbl_time_remaining.Foreground = Brushes.White;
+            lbl_playback_text.Foreground = Brushes.White;
 
             string f1 = "..//..//assets/Night/Night_Pause.png";
             string f2 = "..//..//assets/Night/Night_Template.png";
@@ -408,12 +413,13 @@ namespace MediaPlayer
 
         private void OrangeTheme_Click(object sender, RoutedEventArgs e)
         {
-            ImageBrush LightTheme = new ImageBrush();
-            AdditionalFactory LightColor = new AdditionalFactory();
-            LightTheme = LightColor.GetLight().ChangeImage();
-            SetBackground(LightTheme);
+            theme = new AdditionalFactory();
+            SetBackground(theme.GetLight().ChangeImage());
+
             playFilepath = "..//..//assets/Orange/Orange_Play.png";
             pauseFilepath = "..//..//assets/Orange/Orange_Pause.png";
+            lbl_time_remaining.Foreground = Brushes.Black;
+            lbl_playback_text.Foreground = Brushes.Black;
 
             string f1 = "..//..//assets/Orange/Orange_Pause.png";
             string f2 = "..//..//assets/Orange/Orange_Template.png";
@@ -424,14 +430,13 @@ namespace MediaPlayer
 
         private void EdgyTheme_Click(object sender, RoutedEventArgs e)
         {
-            string filepath;
+            theme = new AdditionalFactory();
+            SetBackground(theme.GetDark().ChangeImage());
 
-            ImageBrush DarkTheme = new ImageBrush();
-            AdditionalFactory DarkColor = new AdditionalFactory();
-            DarkTheme = DarkColor.GetDark().ChangeImage();
-            SetBackground(DarkTheme);
             playFilepath = "..//..//assets/Edgy/Edgy_Play.png";
             pauseFilepath = "..//..//assets/Edgy/Edgy_Pause.png";
+            lbl_time_remaining.Foreground = Brushes.White;
+            lbl_playback_text.Foreground = Brushes.White;
 
             string f1 = "..//..//assets/Edgy/Edgy_Pause.png";
             string f2 = "..//..//assets/Edgy/Edgy_Template.png";
@@ -448,10 +453,10 @@ namespace MediaPlayer
             Button b4 = FastBackward;
             ImageDecorator i = new ImageDecorator(b1, b2, b3, b4, f1, f2, f3, f4);
             i.SetButtonImage();
-            PlayPause = b1;
-            Reverse = b2;
-            FastForward = b3;
-            FastBackward = b4;
+            //PlayPause = b1;
+            //Reverse = b2;
+            //FastForward = b3;
+            //FastBackward = b4;
         }
         //Will be used to also change the buttons with whatever color is wanted. 
         private void SetBackground(ImageBrush backColor)
