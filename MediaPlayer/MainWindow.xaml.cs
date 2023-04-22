@@ -389,7 +389,7 @@ namespace MediaPlayer
             string f1 = "..//..//assets/Default/Def_Pause.png";
             string f2 = "..//..//assets/Default/Def_Template.png";
             string f3 = "..//..//assets/Default/Def_FWD.png";
-            string f4 = "..//..//assets/Default/Def_REV.png";
+            string f4 = "..//..//assets/Default/Def_FREV.png";
             SwapButtons(f1, f2, f3, f4);
 
         }
@@ -407,7 +407,7 @@ namespace MediaPlayer
             string f1 = "..//..//assets/Night/Night_Pause.png";
             string f2 = "..//..//assets/Night/Night_Template.png";
             string f3 = "..//..//assets/Night/Night_FWD.png";
-            string f4 = "..//..//assets/Night/Night_REV.png";
+            string f4 = "..//..//assets/Night/Night_FREV.png";
             SwapButtons(f1, f2, f3, f4);
         }
 
@@ -424,7 +424,7 @@ namespace MediaPlayer
             string f1 = "..//..//assets/Orange/Orange_Pause.png";
             string f2 = "..//..//assets/Orange/Orange_Template.png";
             string f3 = "..//..//assets/Orange/Orange_FWD.png";
-            string f4 = "..//..//assets/Orange/Orange_REV.png";
+            string f4 = "..//..//assets/Orange/Orange_FREV.png";
             SwapButtons(f1, f2, f3, f4);
         }
 
@@ -441,7 +441,7 @@ namespace MediaPlayer
             string f1 = "..//..//assets/Edgy/Edgy_Pause.png";
             string f2 = "..//..//assets/Edgy/Edgy_Template.png";
             string f3 = "..//..//assets/Edgy/Edgy_FWD.png";
-            string f4 = "..//..//assets/Edgy/Edgy_REV.png";
+            string f4 = "..//..//assets/Edgy/Edgy_FREV.png";
             SwapButtons(f1, f2, f3, f4);
         }
 

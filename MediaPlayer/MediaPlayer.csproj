@@ -97,25 +97,35 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Def_Play.png" />
+    <Resource Include="Assets\Default\Def_FREV.png" />
+    <Resource Include="Assets\Default\Def_FWD.png" />
+    <Resource Include="Assets\Default\Def_Pause.png" />
+    <Resource Include="Assets\Default\Def_Play.png" />
+    <Resource Include="Assets\Default\Def_Template.png" />
+    <Resource Include="Assets\Edgy\Edgy_FREV.png" />
+    <Resource Include="Assets\Edgy\Edgy_FWD.png" />
+    <Resource Include="Assets\Edgy\Edgy_Pause.png" />
+    <Resource Include="Assets\Edgy\Edgy_Play.png" />
+    <Resource Include="Assets\Edgy\Edgy_Template.png" />
+    <Resource Include="Assets\Night\Night_FREV.png" />
+    <Resource Include="Assets\Night\Night_FWD.png" />
+    <Resource Include="Assets\Night\Night_Pause.png" />
+    <Resource Include="Assets\Night\Night_Play.png" />
+    <Resource Include="Assets\Night\Night_Template.png" />
+    <Resource Include="Assets\Orange\Orange_FREV.png" />
+    <Resource Include="Assets\Orange\Orange_FWD.png" />
+    <Resource Include="Assets\Orange\Orange_Pause.png" />
+    <Resource Include="Assets\Orange\Orange_Play.png" />
+    <Resource Include="Assets\Orange\Orange_Template.png" />
+    <Resource Include="Assets\Volume.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Def_Pause.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Def_REV.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Def_FWD.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Def_Template.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Volume %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Volume.png" />
+    <Resource Include="Assets\TempBGColors\TempEdgy.jpg" />
+    <Resource Include="Assets\TempBGColors\TempEdgyButtons.jpg" />
+    <Resource Include="Assets\TempBGColors\TempGray.jpg" />
+    <Resource Include="Assets\TempBGColors\TempNight.jpg" />
+    <Resource Include="Assets\TempBGColors\TempNightButtons.jpg" />
+    <Resource Include="Assets\TempBGColors\TempOrange.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

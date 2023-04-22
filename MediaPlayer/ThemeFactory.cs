@@ -71,7 +71,7 @@ namespace MediaPlayer
         public ImageBrush ChangeImage()
         {
             ImageBrush ThemeColor = new ImageBrush();
-            ThemeColor.ImageSource = new BitmapImage(new Uri("..//..//TempBGColors/TempGray.jpg", UriKind.Relative));
+            ThemeColor.ImageSource = new BitmapImage(new Uri("..//..//Assets//TempBGColors/TempGray.jpg", UriKind.Relative));
             return ThemeColor;
         }
     }
@@ -80,7 +80,7 @@ namespace MediaPlayer
         public ImageBrush ChangeImage()
         {
             ImageBrush ThemeColor = new ImageBrush();
-            ThemeColor.ImageSource = new BitmapImage(new Uri("..//..//TempBGColors/TempNight.jpg", UriKind.Relative));
+            ThemeColor.ImageSource = new BitmapImage(new Uri("..//..//Assets//TempBGColors/TempNight.jpg", UriKind.Relative));
             return ThemeColor;
         }
     }
@@ -90,7 +90,7 @@ namespace MediaPlayer
         public ImageBrush ChangeImage()
         {
             ImageBrush ThemeColor = new ImageBrush();
-            ThemeColor.ImageSource = new BitmapImage(new Uri("..//..//TempBGColors/TempOrange.jpg", UriKind.Relative));
+            ThemeColor.ImageSource = new BitmapImage(new Uri("..//..//Assets//TempBGColors/TempOrange.jpg", UriKind.Relative));
             return ThemeColor;
         }
     }
@@ -99,7 +99,7 @@ namespace MediaPlayer
         public ImageBrush ChangeImage()
         {
             ImageBrush ThemeColor = new ImageBrush();
-            ThemeColor.ImageSource = new BitmapImage(new Uri("..//..//TempBGColors/TempEdgy.jpg", UriKind.Relative));
+            ThemeColor.ImageSource = new BitmapImage(new Uri("..//..//Assets//TempBGColors/TempEdgy.jpg", UriKind.Relative));
             return ThemeColor;
         }
     }

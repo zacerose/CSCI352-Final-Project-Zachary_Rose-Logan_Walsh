@@ -27,22 +27,22 @@
         <TextBlock x:Name="lbl_playback_text" HorizontalAlignment="Left" Margin="622,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="1" Grid.Column="0"><Run Text="Playback"/><LineBreak/><Run/></TextBlock>
         <Button x:Name="FastBackward" Content="" HorizontalAlignment="Left" Margin="322,254,0,0" VerticalAlignment="Top" Height="37" Width="44" Click="FREV_Click" Grid.Row="1" Grid.Column="0">
             <Button.Background>
-                <ImageBrush ImageSource="/Def_REV.png"/>
-            </Button.Background>
+                    <ImageBrush ImageSource="/Assets/Default/Def_FREV.png"/>
+                </Button.Background>
         </Button>
         <Button x:Name="PlayPause" Content="" HorizontalAlignment="Left" Margin="371,254,0,0" VerticalAlignment="Top" Height="37" Width="44" Click="PlayPause_Click" Grid.Row="1" Grid.Column="0">
             <Button.Background>
-                <ImageBrush ImageSource="/Def_Pause.png"/>
-            </Button.Background>
+                    <ImageBrush ImageSource="/Assets/Default/Def_Pause.png" />
+                </Button.Background>
         </Button>
         <Button x:Name="Reverse" Content="Reverse" HorizontalAlignment="Left" Margin="420,254,0,0" Width="44" Click="Reverse_Click" Grid.Row="1" Grid.Column="0" Height="37" VerticalAlignment="Top">
             <Button.Background>
-                <ImageBrush ImageSource="/Def_Template.png"/>
+                    <ImageBrush ImageSource="/Assets/Default/Def_Template.png"/>
             </Button.Background>
         </Button>
         <Button x:Name="FastForward" Content="" HorizontalAlignment="Left" Margin="469,255,0,0" Width="44" Click="FFWD_Click" Grid.Row="1" Grid.Column="0">
             <Button.Background>
-                <ImageBrush ImageSource="/Def_FWD.png"/>
+                    <ImageBrush ImageSource="/Assets/Default/Def_FWD.png"/>
             </Button.Background>
         </Button>
         <Menu x:Name="TopMenu" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">
@@ -79,8 +79,9 @@
         </Slider>
         <Button x:Name="MuteButton" Content="" HorizontalAlignment="Left" Margin="704,259,0,10" Width="27" Click="MuteClick" Grid.Row="1" Grid.Column="0">
             <Button.Background>
-                <ImageBrush ImageSource="/Volume.png"/>
-            </Button.Background>
+                    <ImageBrush ImageSource="/Assets/Volume.png"/>
+
+                </Button.Background>
         </Button>
         <Label x:Name="lbl_time_remaining" Content="0/0" HorizontalAlignment="Left" Margin="41,255,0,0" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
     </Grid>
