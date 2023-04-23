@@ -1,0 +1,10 @@
+Space
+OemComma
+OemPeriod
+R
+M
+Up
+Down
+Left
+Right
+F

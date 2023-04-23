@@ -215,5 +215,16 @@ namespace MediaPlayer
                 }
             }
         }
+
+        private void btn_ReturnToDefault_Click(object sender, RoutedEventArgs e)
+        {
+            mainwindow.keybinder.restoreDefaults();
+            resetButtonContent();
+        }
+
+        private void btn_SaveToFile_Click(object sender, RoutedEventArgs e)
+        {
+            mainwindow.keybinder.writeKeybindingsFile();
+        }
     }
 }

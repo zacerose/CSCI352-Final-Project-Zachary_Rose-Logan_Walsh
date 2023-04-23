@@ -67,7 +67,6 @@ namespace MediaPlayer
             viewport.UnloadedBehavior = MediaState.Manual;
             lbl_time_remaining.Visibility = Visibility.Hidden;
 
-            keybinder.restoreDefaults();
         }
 
         void ReverseTimer(object sender, EventArgs e) {

@@ -30,6 +30,7 @@
         <Button x:Name="btn_SliderLeftKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="160,229,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btn_SliderLeftKeybinding_Click"/>
         <Button x:Name="btn_SliderRightKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="158,260,0,0" VerticalAlignment="Top" Click="btn_SliderRightKeybinding_Click" />
         <Button x:Name="btn_FullscreenKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="160,286,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btn_FullscreenKeybinding_Click"/>
-
+        <Button x:Name="btn_ReturnToDefault" Content="Defaults" Focusable="False" HorizontalAlignment="Left" Margin="51,358,0,0" VerticalAlignment="Top" Click="btn_ReturnToDefault_Click"/>
+        <Button x:Name="btn_SaveToFile" Content="Save to file" Focusable="False" HorizontalAlignment="Right" Margin="0,358,49,0" VerticalAlignment="Top" Click="btn_SaveToFile_Click"/>
     </Grid>
 </Window>
