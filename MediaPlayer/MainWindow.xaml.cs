@@ -534,11 +534,11 @@ namespace MediaPlayer
             }
             else if (e.Key == keybinder.SliderLeft)
             {
-
+                Seeker.Value -= Seeker.Maximum / 20;
             }
             else if (e.Key == keybinder.SliderRight)
             {
-
+                Seeker.Value += Seeker.Maximum / 20;
             }
             else if (e.Key == keybinder.Fullscreen)
             {
