@@ -29,7 +29,7 @@ namespace MediaPlayer
         DispatcherTimer vidTimer;
         DispatcherTimer reverseTimer;
 
-        Keybinder keybinder = new Keybinder();
+        public Keybinder keybinder = new Keybinder();
         // abstract product generated from a factory, used to change colors and buttons when needed
         Theme theme = new Gray();
 
@@ -388,6 +388,7 @@ namespace MediaPlayer
             theme.ChangeButtonImage(PlayPause);
             theme.ChangeButtonImage(Reverse);
             theme.ChangeButtonImage(FastForward);
+            theme.ChangeButtonImage(FullScreen);
 
         }
 
@@ -403,6 +404,7 @@ namespace MediaPlayer
             theme.ChangeButtonImage(PlayPause);
             theme.ChangeButtonImage(Reverse);
             theme.ChangeButtonImage(FastForward);
+            theme.ChangeButtonImage(FullScreen);
         }
 
         private void OrangeTheme_Click(object sender, RoutedEventArgs e)
@@ -417,6 +419,7 @@ namespace MediaPlayer
             theme.ChangeButtonImage(PlayPause);
             theme.ChangeButtonImage(Reverse);
             theme.ChangeButtonImage(FastForward);
+            theme.ChangeButtonImage(FullScreen);
         }
 
         private void EdgyTheme_Click(object sender, RoutedEventArgs e)
@@ -430,7 +433,13 @@ namespace MediaPlayer
             theme.ChangeButtonImage(FastBackward);
             theme.ChangeButtonImage(PlayPause);
             theme.ChangeButtonImage(Reverse);
-            theme.ChangeButtonImage(FastForward);
+            theme.ChangeButtonImage(FastForward); 
+            theme.ChangeButtonImage(FullScreen);
+        }
+        private void Hotkeys_Click(object sender, RoutedEventArgs e)
+        {
+            KeybindingsWindow keybindingsWindow = new KeybindingsWindow(this);
+            keybindingsWindow.Show();
         }
         //Will be used to also change the buttons with whatever color is wanted. 
         private void SetBackground(ImageBrush backColor)
@@ -531,6 +540,24 @@ namespace MediaPlayer
             {
 
             }
+            else if (e.Key == keybinder.Fullscreen)
+            {
+               FullScreen_Click(sender, e);
+            }
+        }
+
+        private void FullScreen_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+                this.Left = RestoreBounds.Left;
+                this.Top = RestoreBounds.Top;
+                this.Width = RestoreBounds.Width;
+                this.Height = RestoreBounds.Height;
+            }
+            else
+                this.WindowState = WindowState.Maximized;
         }
     }
 }

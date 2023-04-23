@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace MediaPlayer
 {
-    internal class Keybinder
+    public class Keybinder
     {
-        public System.Windows.Input.Key PlayPause { get; private set; }
-        public System.Windows.Input.Key FREV { get; private set; }
-        public System.Windows.Input.Key FWD { get; private set; }
-        public System.Windows.Input.Key Reverse { get; private set; }
-        public System.Windows.Input.Key Mute { get; private set; }
-        public System.Windows.Input.Key VolumeUp { get; private set; }
-        public System.Windows.Input.Key VolumeDown { get; private set; }
-        public System.Windows.Input.Key SliderLeft { get; private set; }
-        public System.Windows.Input.Key SliderRight { get; private set; }
+        public System.Windows.Input.Key PlayPause { get; set; }
+        public System.Windows.Input.Key FREV { get; set; }
+        public System.Windows.Input.Key FWD { get; set; }
+        public System.Windows.Input.Key Reverse { get; set; }
+        public System.Windows.Input.Key Mute { get; set; }
+        public System.Windows.Input.Key VolumeUp { get; set; }
+        public System.Windows.Input.Key VolumeDown { get; set; }
+        public System.Windows.Input.Key SliderLeft { get; set; }
+        public System.Windows.Input.Key SliderRight { get; set; }
+        public System.Windows.Input.Key Fullscreen { get; set; }
         public void readKeybindingsFile()
         {
 
@@ -36,6 +37,7 @@ namespace MediaPlayer
             VolumeDown = System.Windows.Input.Key.Down;
             SliderLeft = System.Windows.Input.Key.Left;
             SliderRight = System.Windows.Input.Key.Right;
+            Fullscreen = System.Windows.Input.Key.F;
         }
 
     }

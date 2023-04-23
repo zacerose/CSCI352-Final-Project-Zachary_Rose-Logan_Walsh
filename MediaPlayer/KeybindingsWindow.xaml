@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaPlayer"
         mc:Ignorable="d"
-        Title="KeybindingsWindow" Height="487" Width="291">
-    <Grid >
-        
+        Title="KeybindingsWindow" Height="487" Width="291" KeyUp="Window_KeyUp">
+    <Grid x:Name="KeybindingsWindowGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="66*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lbl_PlayPause" Content="PlayPause" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_FREV" Content="FREV" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_FWD" Content="FWD" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_Reverse" Content="Reverse" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_Mute" Content="Mute" HorizontalAlignment="Left" Margin="10,135,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_VolumeUp" Content="VolumeUp" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_VolumeDown" Content="VolumeDown" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_SliderLeft" Content="SliderLeft" HorizontalAlignment="Left" Margin="11,0,0,0" VerticalAlignment="Center"/>
+        <Label x:Name="lbl_SliderRight" Content="SliderRight" HorizontalAlignment="Left" Margin="10,249,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_Fullscreen" Content="Fullscreen" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_playPauseKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="160,16,0,0" VerticalAlignment="Top" Click="btn_playPauseKeybinding_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="btn_FREVKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="160,47,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btn_FREVKeybinding_Click"/>
+        <Button x:Name="btn_FWDKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="160,81,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btn_FWDKeybinding_Click"/>
+        <Button x:Name="btn_ReverseKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="160,112,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btn_ReverseKeybinding_Click"/>
+        <Button x:Name="btn_MuteKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="158,141,0,0" VerticalAlignment="Top" Click="btn_MuteKeybinding_Click" />
+        <Button x:Name="btn_VolumeUpKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="160,172,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btn_VolumeUpKeybinding_Click"/>
+        <Button x:Name="btn_VolumeDownKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="160,198,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btn_VolumeDownKeybinding_Click"/>
+        <Button x:Name="btn_SliderLeftKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="160,229,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btn_SliderLeftKeybinding_Click"/>
+        <Button x:Name="btn_SliderRightKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="158,260,0,0" VerticalAlignment="Top" Click="btn_SliderRightKeybinding_Click" />
+        <Button x:Name="btn_FullscreenKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="160,286,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btn_FullscreenKeybinding_Click"/>
+
     </Grid>
 </Window>

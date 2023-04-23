@@ -98,6 +98,9 @@ namespace MediaPlayer
                 case ButtonDecorator.Type.Reverse:
                     button.SetButtonImage(new Uri("..//..//Assets//Default//Def_Reverse.png", UriKind.Relative));
                     break;
+                case ButtonDecorator.Type.Fullscreen:
+                    button.SetButtonImage(new Uri("..//..//Assets//Default//Def_Fullscreen.png", UriKind.Relative));
+                    break;
             }
         }
     }
@@ -130,6 +133,9 @@ namespace MediaPlayer
                     break;
                 case ButtonDecorator.Type.Reverse:
                     button.SetButtonImage(new Uri("..//..//Assets//Night//Night_Reverse.png", UriKind.Relative));
+                    break;
+                case ButtonDecorator.Type.Fullscreen:
+                    button.SetButtonImage(new Uri("..//..//Assets//Night//Night_Fullscreen.png", UriKind.Relative));
                     break;
             }
         }
@@ -165,6 +171,9 @@ namespace MediaPlayer
                 case ButtonDecorator.Type.Reverse:
                     button.SetButtonImage(new Uri("..//..//Assets//Orange//Orange_Reverse.png", UriKind.Relative));
                     break;
+                case ButtonDecorator.Type.Fullscreen:
+                    button.SetButtonImage(new Uri("..//..//Assets//Orange//Orange_Fullscreen.png", UriKind.Relative));
+                    break;
             }
         }
     }
@@ -198,7 +207,10 @@ namespace MediaPlayer
             case ButtonDecorator.Type.Reverse:
                 button.SetButtonImage(new Uri("..//..//Assets//Edgy//Edgy_Reverse.png", UriKind.Relative));
                 break;
-        }
+            case ButtonDecorator.Type.Fullscreen:
+                button.SetButtonImage(new Uri("..//..//Assets//Edgy//Edgy_Fullscreen.png", UriKind.Relative));
+                break;
+            }
     }
 }
 }

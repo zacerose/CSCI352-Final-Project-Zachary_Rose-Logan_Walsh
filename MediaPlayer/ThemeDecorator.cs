@@ -28,7 +28,7 @@ namespace MediaPlayer
         public Type type { get; set; }
         public enum Type
         {
-            FREV, FWD, Pause, Play, Replay, Reverse, Template
+            FREV, FWD, Pause, Play, Replay, Reverse, Fullscreen, Template
         }
 
         public void SetButtonImage(Uri imageUri)
