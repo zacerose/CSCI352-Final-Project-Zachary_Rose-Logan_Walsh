@@ -14,7 +14,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="541*" />
         </Grid.ColumnDefinitions>
-        <MediaElement x:Name="viewport" Stretch="Fill" Margin="2,25,2,64" MediaOpened="OpenMedia" OpacityMask="Black" AllowDrop="False" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <MediaElement x:Name="viewport" Stretch="Uniform" Margin="2,25,2,64" MediaOpened="OpenMedia" OpacityMask="Black" AllowDrop="False" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"/>
         <Slider x:Name="Seeker" Margin="10,230,10,0" Focusable="False" HorizontalAlignment="Stretch" VerticalAlignment="Top" ValueChanged="Seeker_ValueChanged" Grid.Row="1" Grid.Column="0" TickFrequency="60" MouseUp="Seeker_MouseUp" IsMoveToPointEnabled="True" PreviewMouseMove="Seeker_PreviewMouseMove" PreviewMouseLeftButtonUp="Seeker_PreviewMouseLeftButtonUp"/>
         <TextBox x:Name="ManualPlayback" HorizontalAlignment="Right" Margin="0,270,112,0" TextWrapping="Wrap" Text="1.0" VerticalAlignment="Top" Width="54" TextChanged="Playback_TextChanged" Grid.Row="1" Grid.Column="0"/>
         <TextBlock x:Name="lbl_playback_text" HorizontalAlignment="Right" Margin="0,249,116,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="1" Grid.Column="0"><Run Text="Playback"/><LineBreak/><Run/></TextBlock>
