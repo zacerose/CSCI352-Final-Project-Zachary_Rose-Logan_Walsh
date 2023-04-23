@@ -10,15 +10,15 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="66*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="lbl_PlayPause" Content="PlayPause" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_FREV" Content="FREV" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_FWD" Content="FWD" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_PlayPause" Content="Play/Pause" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_FREV" Content="Decrease speed" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_FWD" Content="Increase speed" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lbl_Reverse" Content="Reverse" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lbl_Mute" Content="Mute" HorizontalAlignment="Left" Margin="10,135,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_VolumeUp" Content="VolumeUp" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_VolumeDown" Content="VolumeDown" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_SliderLeft" Content="SliderLeft" HorizontalAlignment="Left" Margin="11,0,0,0" VerticalAlignment="Center"/>
-        <Label x:Name="lbl_SliderRight" Content="SliderRight" HorizontalAlignment="Left" Margin="10,249,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_VolumeUp" Content="Volume Up" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_VolumeDown" Content="Volume Down" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_SliderLeft" Content="Skip backwards" HorizontalAlignment="Left" Margin="11,0,0,0" VerticalAlignment="Center"/>
+        <Label x:Name="lbl_SliderRight" Content="Skip forwards" HorizontalAlignment="Left" Margin="10,249,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lbl_Fullscreen" Content="Fullscreen" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btn_playPauseKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="160,16,0,0" VerticalAlignment="Top" Click="btn_playPauseKeybinding_Click" Grid.ColumnSpan="2"/>
         <Button x:Name="btn_FREVKeybinding"  Content="Button" Focusable="False" HorizontalAlignment="Left" Margin="160,47,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btn_FREVKeybinding_Click"/>
