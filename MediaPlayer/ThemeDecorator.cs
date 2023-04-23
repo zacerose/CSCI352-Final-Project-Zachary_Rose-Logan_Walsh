@@ -22,60 +22,20 @@ using System.Windows.Shell;
 
 namespace MediaPlayer
 {
-    using System;
-    using System.IO;
-
-    namespace Decorator
+    // decorator for Windows.Controls.Button, adds extended state and behavior for changing the image based on the button "type"
+    public class ButtonDecorator : Button
     {
-        public abstract class ButtonDecorator : ButtonBase
+        public Type type { get; set; }
+        public enum Type
         {
-            Button newButtonPause;
-            Button newButtonRev;
-            Button newButtonFFWD;
-            Button newButtonFREV;
-            string fpath1;
-            string fpath2;
-            string fpath3;
-            string fpath4;
-
-            public ButtonDecorator(Button p, Button r, Button ff, Button fr, string nfp1, string nfp2, string nfp3, string nfp4)
-            {
-                newButtonPause = p;
-                newButtonRev = r;
-                newButtonFFWD = ff;
-                newButtonFREV = fr;
-                nfp1 = fpath1 = nfp1;
-                fpath2 = nfp2;
-                fpath3 = nfp3;
-                fpath4 = nfp4;
-            }
-            public virtual void SetButtonImage()
-            {
-
-                Button Button = new Button();
-                ImageBrush ButtonThemeP = new ImageBrush();
-                ImageBrush ButtonThemeR = new ImageBrush();
-                ImageBrush ButtonThemeFF = new ImageBrush();
-                ImageBrush ButtonThemeFR = new ImageBrush();
-                ButtonThemeP.ImageSource = new BitmapImage(new Uri(fpath1, UriKind.Relative));
-                ButtonThemeR.ImageSource = new BitmapImage(new Uri(fpath2, UriKind.Relative));
-                ButtonThemeFF.ImageSource = new BitmapImage(new Uri(fpath3, UriKind.Relative));
-                ButtonThemeFR.ImageSource = new BitmapImage(new Uri(fpath4, UriKind.Relative));
-                newButtonPause.Background = (ButtonThemeP);
-                newButtonRev.Background = (ButtonThemeR);
-                newButtonFFWD.Background = (ButtonThemeFF);
-                newButtonFREV.Background = (ButtonThemeFR);
-            }
+            FREV, FWD, Pause, Play, Replay, Reverse, Template
         }
-        public class ImageDecorator : ButtonDecorator
+
+        public void SetButtonImage(Uri imageUri)
         {
-            public ImageDecorator(Button p, Button r, Button ff, Button fr, string nfp1, string nfp2, string nfp3, string nfp4) : base(p, r, ff, fr, nfp1, nfp2, nfp3, nfp4) { }
-            public override void SetButtonImage()
-            {
-
-                base.SetButtonImage();
-
-            }
+            ImageBrush buttonTheme = new ImageBrush();
+            buttonTheme.ImageSource = new BitmapImage(imageUri);
+            this.Background = buttonTheme;
         }
     }
 }

@@ -14,7 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Threading; //Added for the timer
 using System.Windows.Shapes;
-using MediaPlayer.Decorator;
 
 //Video player Program by Logan Walsh and Zachary Rose
 //Last Edited: 3-18-2023
@@ -30,8 +29,8 @@ namespace MediaPlayer
         DispatcherTimer vidTimer;
         DispatcherTimer reverseTimer;
 
-        // abstract factory used to change the theme when needed
-        ThemeFactory theme = new StandardFactory();
+        // abstract product generated from a factory, used to change colors and buttons when needed
+        Theme theme = new Gray();
 
         double videoPosition;
 
@@ -79,13 +78,12 @@ namespace MediaPlayer
         {
             // if video is at the end, change text of play button to replay
             // later, when queues are implemented, this will have to check if there is another video to play afterwards
-            ImageBrush playBrush = new ImageBrush();
-            playBrush.ImageSource = new BitmapImage(new Uri(playFilepath, UriKind.Relative));
             try
             {
                 if (viewport.Position == viewport.NaturalDuration.TimeSpan)
                 {
-                    PlayPause.Background = playBrush;
+                    PlayPause.type = ButtonDecorator.Type.Replay;
+                    theme.ChangeButtonImage(PlayPause);
                     //PlayPause.Content = "Replay";
                     isPlaying = false;
                 }
@@ -109,12 +107,6 @@ namespace MediaPlayer
 
         private void PlayPause_Click(object sender, RoutedEventArgs e)
         {
-            //These are used to check the source of the buttons based on the selected theme
-            ImageBrush playBrush = new ImageBrush();
-            playBrush.ImageSource = new BitmapImage(new Uri(playFilepath, UriKind.Relative));
-            ImageBrush pauseBrush = new ImageBrush();
-            pauseBrush.ImageSource = new BitmapImage(new Uri(pauseFilepath, UriKind.Relative));
-
             double speed = parse_SpeedRatio();
 
             // don't do anything if the media isn't loaded yet
@@ -126,7 +118,8 @@ namespace MediaPlayer
                 if (playing_fowards)
                     Seeker.Value = 0;
                 isPlaying = true;
-                PlayPause.Background = pauseBrush;
+                PlayPause.type = ButtonDecorator.Type.Pause;
+                theme.ChangeButtonImage(PlayPause);
                 return;
             }
             // pause the media
@@ -135,7 +128,10 @@ namespace MediaPlayer
                 viewport.Pause();
                 isPlaying = false;
                 if (!draggingSeeker)
-                    PlayPause.Background = playBrush;
+                {
+                    PlayPause.type = ButtonDecorator.Type.Play;
+                    theme.ChangeButtonImage(PlayPause);
+                }
             }
             // unpause the media
             else
@@ -144,7 +140,10 @@ namespace MediaPlayer
                 //vidTimer.Start();
                 isPlaying = true;
                 if (!draggingSeeker)
-                    PlayPause.Background = pauseBrush;
+                {
+                    PlayPause.type = ButtonDecorator.Type.Pause;
+                    theme.ChangeButtonImage(PlayPause);
+                }
             }
 #if SPEED3
             // weird solution that allows the player to maintain speeds over 2 between pauses
@@ -373,90 +372,61 @@ namespace MediaPlayer
             MessageBox.Show(AboutText, txt);
         }
         
-        //These are used to make sure the buttons when pressing play/pause stay consistent with their themes
-        string playFilepath = "..//..//assets/default/Def_Play.png";
-        string pauseFilepath = "..//..//assets/default/Def_Pause.png";
         private void DefaultTheme_Click(object sender, RoutedEventArgs e)
         {
-            theme = new StandardFactory();
-            SetBackground(theme.GetLight().ChangeImage());
+            theme = new StandardFactory().GetLight();
+            SetBackground(theme.ChangeBackground());
 
-            playFilepath = "..//..//assets/default/Def_Play.png";
-            pauseFilepath = "..//..//assets/default/Def_Pause.png";
             lbl_time_remaining.Foreground = Brushes.Black;
             lbl_playback_text.Foreground = Brushes.Black;
 
-            string f1 = "..//..//assets/Default/Def_Pause.png";
-            string f2 = "..//..//assets/Default/Def_Template.png";
-            string f3 = "..//..//assets/Default/Def_FWD.png";
-            string f4 = "..//..//assets/Default/Def_FREV.png";
-            SwapButtons(f1, f2, f3, f4);
+            theme.ChangeButtonImage(FastBackward);
+            theme.ChangeButtonImage(PlayPause);
+            theme.ChangeButtonImage(Reverse);
+            theme.ChangeButtonImage(FastForward);
 
         }
 
         private void NightTheme_Click(object sender, RoutedEventArgs e)
         {
-            theme = new StandardFactory();
-            SetBackground(theme.GetDark().ChangeImage());
+            theme = new StandardFactory().GetDark();
+            SetBackground(theme.ChangeBackground());
 
-            playFilepath = "..//..//assets/Night/Night_Play.png";
-            pauseFilepath = "..//..//assets/Night/Night_Pause.png";
             lbl_time_remaining.Foreground = Brushes.White;
             lbl_playback_text.Foreground = Brushes.White;
 
-            string f1 = "..//..//assets/Night/Night_Pause.png";
-            string f2 = "..//..//assets/Night/Night_Template.png";
-            string f3 = "..//..//assets/Night/Night_FWD.png";
-            string f4 = "..//..//assets/Night/Night_FREV.png";
-            SwapButtons(f1, f2, f3, f4);
+            theme.ChangeButtonImage(FastBackward);
+            theme.ChangeButtonImage(PlayPause);
+            theme.ChangeButtonImage(Reverse);
+            theme.ChangeButtonImage(FastForward);
         }
 
         private void OrangeTheme_Click(object sender, RoutedEventArgs e)
         {
-            theme = new AdditionalFactory();
-            SetBackground(theme.GetLight().ChangeImage());
+            theme = new AdditionalFactory().GetLight();
+            SetBackground(theme.ChangeBackground());
 
-            playFilepath = "..//..//assets/Orange/Orange_Play.png";
-            pauseFilepath = "..//..//assets/Orange/Orange_Pause.png";
             lbl_time_remaining.Foreground = Brushes.Black;
             lbl_playback_text.Foreground = Brushes.Black;
 
-            string f1 = "..//..//assets/Orange/Orange_Pause.png";
-            string f2 = "..//..//assets/Orange/Orange_Template.png";
-            string f3 = "..//..//assets/Orange/Orange_FWD.png";
-            string f4 = "..//..//assets/Orange/Orange_FREV.png";
-            SwapButtons(f1, f2, f3, f4);
+            theme.ChangeButtonImage(FastBackward);
+            theme.ChangeButtonImage(PlayPause);
+            theme.ChangeButtonImage(Reverse);
+            theme.ChangeButtonImage(FastForward);
         }
 
         private void EdgyTheme_Click(object sender, RoutedEventArgs e)
         {
-            theme = new AdditionalFactory();
-            SetBackground(theme.GetDark().ChangeImage());
+            theme = new AdditionalFactory().GetDark();
+            SetBackground(theme.ChangeBackground());
 
-            playFilepath = "..//..//assets/Edgy/Edgy_Play.png";
-            pauseFilepath = "..//..//assets/Edgy/Edgy_Pause.png";
             lbl_time_remaining.Foreground = Brushes.White;
             lbl_playback_text.Foreground = Brushes.White;
 
-            string f1 = "..//..//assets/Edgy/Edgy_Pause.png";
-            string f2 = "..//..//assets/Edgy/Edgy_Template.png";
-            string f3 = "..//..//assets/Edgy/Edgy_FWD.png";
-            string f4 = "..//..//assets/Edgy/Edgy_FREV.png";
-            SwapButtons(f1, f2, f3, f4);
-        }
-
-        private void SwapButtons(string f1, string f2, string f3, string f4)
-        {
-            Button b1 = PlayPause;
-            Button b2 = Reverse;
-            Button b3 = FastForward;
-            Button b4 = FastBackward;
-            ImageDecorator i = new ImageDecorator(b1, b2, b3, b4, f1, f2, f3, f4);
-            i.SetButtonImage();
-            //PlayPause = b1;
-            //Reverse = b2;
-            //FastForward = b3;
-            //FastBackward = b4;
+            theme.ChangeButtonImage(FastBackward);
+            theme.ChangeButtonImage(PlayPause);
+            theme.ChangeButtonImage(Reverse);
+            theme.ChangeButtonImage(FastForward);
         }
         //Will be used to also change the buttons with whatever color is wanted. 
         private void SetBackground(ImageBrush backColor)
