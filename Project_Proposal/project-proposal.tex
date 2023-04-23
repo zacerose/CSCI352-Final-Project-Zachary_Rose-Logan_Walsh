@@ -360,7 +360,8 @@ A Factory class is used to change the appearance of the application during runti
 \subsection{UML Outline}
 
 The MainWindow class holds the WPF form. This form holds the button controls, and most importantly it holds the MediaElement object which is used to enable playback. Two DispatcherTimers are also used to keep the seeker updated with the video playback. These structures are located at the top of Figure \ref{UML}.\par
-The ThemeFactory is an abstract factory interface used to change the theme of the media player. When choosing a theme a new factory is constructed, and it is used to change the appearance of certain elements like background colors and button design. These structures are located at the botton of Figure \ref{UML}.
+The ThemeFactory is an abstract factory interface used to change the theme of the media player. When choosing a theme a new factory is constructed, and it is used to change the appearance of certain elements like background colors and button design. These structures are located at the bottom of Figure \ref{UML}.\par
+The Button Decorator is a wrapper for the Windows.Controls.Button with added state and behavior in relation to button appearance. This structure is located at the top of Figure \ref{UML}.
 \begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.4]{MediaPlayerUML.png}
@@ -371,7 +372,9 @@ The ThemeFactory is an abstract factory interface used to change the theme of th
 
 
 \subsection{Design Patterns Used}
-We used an abstract factory to provide different look-feel themes for the user to choose from (See Figure \ref{UML}). We also plan to implement a decorator to add special behavior to the button elements when needed.
+We used an abstract factory to provide different look-feel themes for the user to choose from (See Figure \ref{UML}). The abstract factory ThemeFactory has two concrete factories: StandardFactory and AdditionalFactory. These concrete factories generate a Light or Dark. Theme is an abstract product which is subclassed by the more specific abstract products Light and Dark. The concrete products Gray, Orange, Night, and Edgy are capable of changing the color of the background and the image/color of the buttons. \medskip
+
+We used a decorator for the Windows.Control.Button to add extra behavior and states to our form elements. The ButtonDecorator has a Type which specifies which button appearance it should have. For instance, a play button vs. a pause button, or a fast forward button. It also has a function SetButtonImage, which is provided a Uri to the correct display image by the concrete product (see the abstract factory above) that calls it. Only the button knows what kind of button it is, so this information is used by the abstract factory to provide the correct file.
 
 
 \section{Results}
