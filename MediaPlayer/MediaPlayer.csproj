@@ -117,15 +117,27 @@
     <Resource Include="Assets\Orange\Orange_Pause.png" />
     <Resource Include="Assets\Orange\Orange_Play.png" />
     <Resource Include="Assets\Orange\Orange_Template.png" />
-    <Resource Include="Assets\Volume.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\TempBGColors\TempEdgy.jpg" />
     <Resource Include="Assets\TempBGColors\TempEdgyButtons.jpg" />
     <Resource Include="Assets\TempBGColors\TempGray.jpg" />
     <Resource Include="Assets\TempBGColors\TempNight.jpg" />
     <Resource Include="Assets\TempBGColors\TempNightButtons.jpg" />
     <Resource Include="Assets\TempBGColors\TempOrange.jpg" />
+    <Resource Include="Assets\Volume.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Default\Def_FullScreen.png" />
+    <Resource Include="Assets\Default\Def_Replay.png" />
+    <Resource Include="Assets\Default\Def_Reverse.png" />
+    <Resource Include="Assets\Edgy\Edgy_FullScreen.png" />
+    <Resource Include="Assets\Edgy\Edgy_Replay.png" />
+    <Resource Include="Assets\Edgy\Edgy_Reverse.png" />
+    <Resource Include="Assets\Night\Night_FullScreen.png" />
+    <Resource Include="Assets\Night\Night_Replay.png" />
+    <Resource Include="Assets\Night\Night_Reverse.png" />
+    <Resource Include="Assets\Orange\Orange_FullScreen.png" />
+    <Resource Include="Assets\Orange\Orange_Replay.png" />
+    <Resource Include="Assets\Orange\Orange_Reverse.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

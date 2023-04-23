@@ -31,7 +31,7 @@ namespace MediaPlayer
         DispatcherTimer reverseTimer;
 
         // abstract factory used to change the theme when needed
-        ThemeFactory theme;
+        ThemeFactory theme = new StandardFactory();
 
         double videoPosition;
 

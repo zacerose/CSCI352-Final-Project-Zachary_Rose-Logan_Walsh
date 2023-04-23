@@ -35,9 +35,9 @@
                     <ImageBrush ImageSource="/Assets/Default/Def_Pause.png" />
                 </Button.Background>
         </Button>
-        <Button x:Name="Reverse" Content="Reverse" HorizontalAlignment="Left" Margin="420,254,0,0" Width="44" Click="Reverse_Click" Grid.Row="1" Grid.Column="0" Height="37" VerticalAlignment="Top">
+        <Button x:Name="Reverse" Content="" HorizontalAlignment="Left" Margin="420,254,0,0" Width="44" Click="Reverse_Click" Grid.Row="1" Grid.Column="0" Height="37" VerticalAlignment="Top">
             <Button.Background>
-                    <ImageBrush ImageSource="/Assets/Default/Def_Template.png"/>
+                    <ImageBrush ImageSource="/Assets/Default/Def_Reverse.png"/>
             </Button.Background>
         </Button>
         <Button x:Name="FastForward" Content="" HorizontalAlignment="Left" Margin="469,255,0,0" Width="44" Click="FFWD_Click" Grid.Row="1" Grid.Column="0">
