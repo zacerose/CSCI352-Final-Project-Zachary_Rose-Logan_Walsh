@@ -87,14 +87,17 @@ namespace MediaPlayer
                     //PlayPause.Content = "Replay";
                     isPlaying = false;
                 }
+                // if the video isn't at the end, update the elapsed time
+                else
+                    lbl_time_remaining.Content = String.Format("{0}/{1}", viewport.Position.ToString(@"hh\:mm\:ss"), viewport.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
             }
             catch (System.InvalidOperationException error) {
-                // catches error that happens between selecting videos
+                // catches error that happens between selecting videos, doesn't need to be handled
             }
             if (isPlaying)
             {
                 updateSeeker();
-                lbl_time_remaining.Content = String.Format("{0}/{1}", viewport.Position.ToString(@"hh\:mm\:ss"), viewport.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss"));
+                
                 videoPosition = viewport.Position.TotalMilliseconds;
             }
         }
