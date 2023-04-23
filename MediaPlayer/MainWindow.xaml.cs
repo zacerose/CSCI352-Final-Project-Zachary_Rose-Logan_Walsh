@@ -29,10 +29,12 @@ namespace MediaPlayer
         DispatcherTimer vidTimer;
         DispatcherTimer reverseTimer;
 
+        Keybinder keybinder = new Keybinder();
         // abstract product generated from a factory, used to change colors and buttons when needed
         Theme theme = new Gray();
 
-        double videoPosition;
+        // persistent value that allows returning to previous volume after unmuting
+        double volume;
 
         bool playing_fowards = true;
         bool draggingSeeker = false;
@@ -64,6 +66,8 @@ namespace MediaPlayer
             viewport.LoadedBehavior = MediaState.Manual;
             viewport.UnloadedBehavior = MediaState.Manual;
             lbl_time_remaining.Visibility = Visibility.Hidden;
+
+            keybinder.restoreDefaults();
         }
 
         void ReverseTimer(object sender, EventArgs e) {
@@ -84,7 +88,6 @@ namespace MediaPlayer
                 {
                     PlayPause.type = ButtonDecorator.Type.Replay;
                     theme.ChangeButtonImage(PlayPause);
-                    //PlayPause.Content = "Replay";
                     isPlaying = false;
                 }
                 // if the video isn't at the end, update the elapsed time
@@ -96,9 +99,7 @@ namespace MediaPlayer
             }
             if (isPlaying)
             {
-                updateSeeker();
-                
-                videoPosition = viewport.Position.TotalMilliseconds;
+                updateSeeker();             
             }
         }
         void updateSeeker()
@@ -483,11 +484,52 @@ namespace MediaPlayer
         {
             if (slider_volume.Value > 0)
             {
+                volume = slider_volume.Value;
                 slider_volume.Value = 0;
             }
             else
             {
-                slider_volume.Value = 0.50;
+                slider_volume.Value = volume;
+            }
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == keybinder.PlayPause)
+            {
+                PlayPause_Click(sender, e);
+            }
+            else if (e.Key == keybinder.FREV)
+            {
+                FREV_Click(sender, e);
+            }
+            else if (e.Key == keybinder.FWD)
+            {
+                FFWD_Click(sender, e);
+            }
+            else if (e.Key == keybinder.Reverse)
+            {
+                Reverse_Click(sender, e);
+            }
+            else if (e.Key == keybinder.Mute)
+            {
+                MuteClick(sender, e);
+            }
+            else if (e.Key == keybinder.VolumeUp)
+            {
+                slider_volume.Value += .1;
+            }
+            else if (e.Key == keybinder.VolumeDown)
+            {
+                slider_volume.Value -= .1;
+            }
+            else if (e.Key == keybinder.SliderLeft)
+            {
+
+            }
+            else if (e.Key == keybinder.SliderRight)
+            {
+
             }
         }
     }
