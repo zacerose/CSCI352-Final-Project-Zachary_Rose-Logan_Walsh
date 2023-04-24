@@ -148,14 +148,6 @@ namespace MediaPlayer
                     theme.ChangeButtonImage(PlayPause);
                 }
             }
-#if SPEED3
-            // weird solution that allows the player to maintain speeds over 2 between pauses
-            if (speed > 2)
-            {
-                viewport.SpeedRatio = 2;
-                Thread.Sleep(6);
-            }
-#endif
             viewport.SpeedRatio = speed;
 
         }
@@ -259,18 +251,6 @@ namespace MediaPlayer
             // if already playing backwards, play faster (backwards)
             if (!playing_fowards)
             {
-#if SPEED3
-
-                // speed caps at 3
-                if (speed <= 2.75)
-                {
-                    speed += 0.25;
-                    ManualPlayback.Text = speed.ToString();
-                }
-                else
-                    ManualPlayback.Text = 3.ToString();
-            }
-#else
                 // speed caps at 2
                 if (speed <= 1.75)
                 {
@@ -280,7 +260,6 @@ namespace MediaPlayer
                 else
                     ManualPlayback.Text = 2.ToString();
             }
-#endif
             // if playing forwards, go closer to playing backwards
             else
                 {
@@ -300,16 +279,6 @@ namespace MediaPlayer
             // if already playing forwards, play faster
             if (playing_fowards)
             {
-#if SPEED3
-                // speed caps at 3
-                if (speed <= 2.75)
-                {
-                    speed += 0.25;
-                    ManualPlayback.Text = speed.ToString();
-                }
-                else
-                    ManualPlayback.Text = 3.ToString();
-#else
                 // speed caps at 2
                 if (speed <= 1.75)
                 {
@@ -319,7 +288,6 @@ namespace MediaPlayer
                 else
                     ManualPlayback.Text = 2.ToString();
             }
-#endif
             // if in reverse, go closer to playing forwards
             else
             {
@@ -331,13 +299,6 @@ namespace MediaPlayer
                 }
                 ManualPlayback.Text = speed.ToString();
             }
-        }
-        void PropertyValues()
-        {
-
-            //playback = double.Parse(Playback_TextChanged.Text);
-            //viewport.SpeedRatio = playback;
-
         }
 
         private void FileMenu_Click(object sender, RoutedEventArgs e)
@@ -446,14 +407,6 @@ namespace MediaPlayer
             viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
 
             double speed = parse_SpeedRatio();
-#if SPEED3
-            // weird solution that allows the player to maintain speeds over 2 between pauses
-            if (speed > 2)
-            {
-                viewport.SpeedRatio = 2;
-                Thread.Sleep(6);
-            }
-#endif
             viewport.SpeedRatio = speed;
         }
         // for dragging the seeker
@@ -551,6 +504,11 @@ namespace MediaPlayer
             }
             else
                 this.WindowState = WindowState.Maximized;
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainUI.Focus();
         }
     }
 }

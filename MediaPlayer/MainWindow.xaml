@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaPlayer"
         mc:Ignorable="d"
-        Title="Unnamed Video Player (2023)" Height="450" Width="800" Background="#FF3F0404" AllowDrop="True" KeyUp="Window_KeyUp">
-    <Grid x:Name="MainUI" Background="#FFD4D4D4" AllowDrop="True" Drop="DropDown" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        Title="Unnamed Video Player (2023)" Height="450" Width="800" Background="#FF3F0404" AllowDrop="True" KeyUp="Window_KeyUp" MouseDown="Window_MouseDown">
+    <Grid x:Name="MainUI" Background="#FFD4D4D4" AllowDrop="True" Focusable="True" Drop="DropDown" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />
