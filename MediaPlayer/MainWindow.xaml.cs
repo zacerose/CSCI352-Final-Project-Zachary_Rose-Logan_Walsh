@@ -40,6 +40,8 @@ namespace MediaPlayer
         bool draggingSeeker = false;
         // whether or not the video is paused
         bool isPlaying;
+        // True if MediaElement should keep its aspect ratio, false if it should fill the window
+        bool enforceAspectRatio = true;
         public MainWindow()
         {
             InitializeComponent();
@@ -306,22 +308,21 @@ namespace MediaPlayer
 
         }
 
-        Boolean AspRatio = false;
 
         private void AspRatio_Click(object sender, RoutedEventArgs e)
         {
             
-            if (AspRatio == false)
+            if (enforceAspectRatio == true)
             {
                 viewport.Stretch = Stretch.Fill;
-                AspStretch.Header = "Use Original Aspect Ratio";
-                AspRatio = true;
+                AspStretch.Header = "Enforce media aspect ratio";
+                enforceAspectRatio = false;
             }
-            else if (AspRatio == true)
+            else
             {
                 viewport.Stretch = Stretch.Uniform;
-                AspStretch.Header = "Stretch Aspect Ratio";
-                AspRatio = false;
+                AspStretch.Header = "Stretch media to fill";
+                enforceAspectRatio = true;
             }
         }
 

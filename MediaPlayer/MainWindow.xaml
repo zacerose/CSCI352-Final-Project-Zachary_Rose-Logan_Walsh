@@ -51,9 +51,9 @@
                 <MenuItem Header="Exit"/>
             </MenuItem>
             <MenuItem x:Name="OptionsMenu" Header="Options">
-                <MenuItem Header="General Settings"/>
-                <MenuItem Header="Video Settings"/>
-                <MenuItem Header="Hotkeys" Click="Hotkeys_Click"/>
+                <!--<MenuItem Header="General Settings"/>
+                <MenuItem Header="Video Settings"/>-->
+                <MenuItem Header="Set Hotkeys" Click="Hotkeys_Click"/>
                 <MenuItem Name="AspStretch" Header="Stretch Aspect Ratio" Click="AspRatio_Click"/>
                 <Separator/>
                 <MenuItem Header="Default Theme" Click="DefaultTheme_Click"/>
