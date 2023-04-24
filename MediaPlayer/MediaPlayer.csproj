@@ -59,7 +59,7 @@
     <Compile Include="KeybindingsWindow.xaml.cs">
       <DependentUpon>KeybindingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ThemeDecorator.cs" />
+    <Compile Include="ButtonDecorator.cs" />
     <Page Include="KeybindingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

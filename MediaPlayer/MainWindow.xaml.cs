@@ -31,7 +31,7 @@ namespace MediaPlayer
 
         public Keybinder keybinder = new Keybinder();
         // abstract product generated from a factory, used to change colors and buttons when needed
-        Theme theme = new Gray();
+        public Theme theme = new Gray();
 
         // persistent value that allows returning to previous volume after unmuting
         double volume;
@@ -378,10 +378,10 @@ namespace MediaPlayer
         private void DefaultTheme_Click(object sender, RoutedEventArgs e)
         {
             theme = new StandardFactory().GetLight();
-            SetBackground(theme.ChangeBackground());
+            MainUI.Background = theme.ChangeBackground();
 
-            lbl_time_remaining.Foreground = Brushes.Black;
-            lbl_playback_text.Foreground = Brushes.Black;
+            lbl_time_remaining.Foreground = theme.ChangeLabelColor();
+            lbl_playback_text.Foreground = theme.ChangeLabelColor();
 
             theme.ChangeButtonImage(FastBackward);
             theme.ChangeButtonImage(PlayPause);
@@ -394,10 +394,10 @@ namespace MediaPlayer
         private void NightTheme_Click(object sender, RoutedEventArgs e)
         {
             theme = new StandardFactory().GetDark();
-            SetBackground(theme.ChangeBackground());
-
-            lbl_time_remaining.Foreground = Brushes.White;
-            lbl_playback_text.Foreground = Brushes.White;
+            MainUI.Background = theme.ChangeBackground();
+            
+            lbl_time_remaining.Foreground = theme.ChangeLabelColor();
+            lbl_playback_text.Foreground = theme.ChangeLabelColor();
 
             theme.ChangeButtonImage(FastBackward);
             theme.ChangeButtonImage(PlayPause);
@@ -409,10 +409,10 @@ namespace MediaPlayer
         private void OrangeTheme_Click(object sender, RoutedEventArgs e)
         {
             theme = new AdditionalFactory().GetLight();
-            SetBackground(theme.ChangeBackground());
+            MainUI.Background = theme.ChangeBackground();
 
-            lbl_time_remaining.Foreground = Brushes.Black;
-            lbl_playback_text.Foreground = Brushes.Black;
+            lbl_time_remaining.Foreground = theme.ChangeLabelColor();
+            lbl_playback_text.Foreground = theme.ChangeLabelColor();
 
             theme.ChangeButtonImage(FastBackward);
             theme.ChangeButtonImage(PlayPause);
@@ -424,10 +424,10 @@ namespace MediaPlayer
         private void EdgyTheme_Click(object sender, RoutedEventArgs e)
         {
             theme = new AdditionalFactory().GetDark();
-            SetBackground(theme.ChangeBackground());
+            MainUI.Background = theme.ChangeBackground();
 
-            lbl_time_remaining.Foreground = Brushes.White;
-            lbl_playback_text.Foreground = Brushes.White;
+            lbl_time_remaining.Foreground = theme.ChangeLabelColor();
+            lbl_playback_text.Foreground = theme.ChangeLabelColor();
 
             theme.ChangeButtonImage(FastBackward);
             theme.ChangeButtonImage(PlayPause);
@@ -440,12 +440,6 @@ namespace MediaPlayer
             KeybindingsWindow keybindingsWindow = new KeybindingsWindow(this);
             keybindingsWindow.Show();
         }
-        //Will be used to also change the buttons with whatever color is wanted. 
-        private void SetBackground(ImageBrush backColor)
-        {
-            MainUI.Background = backColor;
-        }
-
         // for clicking the seeker
         private void Seeker_MouseUp(object sender, MouseButtonEventArgs e)
         {

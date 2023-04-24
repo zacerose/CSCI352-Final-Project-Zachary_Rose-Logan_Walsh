@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -31,6 +32,48 @@ namespace MediaPlayer
             InitializeComponent();
             mainwindow = mw;
             resetButtonContent();
+
+            KeybindingsWindowGrid.Background = mw.theme.ChangeBackground();
+
+            // changing the labels color to contrast with the background
+            lbl_PlayPause.Foreground = mw.theme.ChangeLabelColor();
+            lbl_FREV.Foreground = mw.theme.ChangeLabelColor();
+            lbl_FWD.Foreground = mw.theme.ChangeLabelColor();
+            lbl_Reverse.Foreground = mw.theme.ChangeLabelColor();
+            lbl_Mute.Foreground = mw.theme.ChangeLabelColor();
+            lbl_VolumeUp.Foreground = mw.theme.ChangeLabelColor();
+            lbl_VolumeDown.Foreground = mw.theme.ChangeLabelColor();
+            lbl_SliderLeft.Foreground = mw.theme.ChangeLabelColor();
+            lbl_SliderRight.Foreground = mw.theme.ChangeLabelColor();
+            lbl_Fullscreen.Foreground = mw.theme.ChangeLabelColor();
+
+            // changing the buttons backgrounds to match with the background
+            mw.theme.ChangeButtonImage(btn_playPauseKeybinding);
+            mw.theme.ChangeButtonImage(btn_FREVKeybinding);
+            mw.theme.ChangeButtonImage(btn_FWDKeybinding);
+            mw.theme.ChangeButtonImage(btn_ReverseKeybinding);
+            mw.theme.ChangeButtonImage(btn_MuteKeybinding);
+            mw.theme.ChangeButtonImage(btn_VolumeUpKeybinding);
+            mw.theme.ChangeButtonImage(btn_VolumeDownKeybinding);
+            mw.theme.ChangeButtonImage(btn_SliderLeftKeybinding);
+            mw.theme.ChangeButtonImage(btn_SliderRightKeybinding);
+            mw.theme.ChangeButtonImage(btn_FullscreenKeybinding);
+            mw.theme.ChangeButtonImage(btn_ReturnToDefault);
+            mw.theme.ChangeButtonImage(btn_SaveToFile);
+
+            // changing the button text color to contrast with the button color
+            btn_playPauseKeybinding.Foreground = mw.theme.ChangeLabelColor();
+            btn_FREVKeybinding.Foreground = mw.theme.ChangeLabelColor();
+            btn_FWDKeybinding.Foreground = mw.theme.ChangeLabelColor();
+            btn_ReverseKeybinding.Foreground = mw.theme.ChangeLabelColor();
+            btn_MuteKeybinding.Foreground = mw.theme.ChangeLabelColor();
+            btn_VolumeUpKeybinding.Foreground = mw.theme.ChangeLabelColor();
+            btn_VolumeDownKeybinding.Foreground = mw.theme.ChangeLabelColor();
+            btn_SliderLeftKeybinding.Foreground = mw.theme.ChangeLabelColor();
+            btn_SliderRightKeybinding.Foreground = mw.theme.ChangeLabelColor();
+            btn_FullscreenKeybinding.Foreground = mw.theme.ChangeLabelColor();
+            btn_ReturnToDefault.Foreground = mw.theme.ChangeLabelColor();
+            btn_SaveToFile.Foreground = mw.theme.ChangeLabelColor();
         }
         private void resetButtonContent()
         {
