@@ -52,8 +52,6 @@ namespace MediaPlayer
             reverseTimer = new DispatcherTimer();
             reverseTimer.Tick += new EventHandler(ReverseTimer);
 
-            //seekerUpdateTimer.Start();
-
             Seeker.SmallChange = 100;
             Seeker.LargeChange = 200;
             Seeker.Minimum = 0;
