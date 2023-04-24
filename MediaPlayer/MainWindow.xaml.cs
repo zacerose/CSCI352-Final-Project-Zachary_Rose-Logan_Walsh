@@ -68,7 +68,7 @@ namespace MediaPlayer
             lbl_time_remaining.Visibility = Visibility.Hidden;
 
         }
-
+        // an approximation of playing in reverse
         void ReverseTimer(object sender, EventArgs e) {
             if (isPlaying)
             {
@@ -77,10 +77,10 @@ namespace MediaPlayer
                 viewport.Position = TimeSpan.FromMilliseconds(Seeker.Value);
             }
         }
+        // controls updating the seeker and elapsed time
         void TickTimer(object sender, EventArgs e)
         {
             // if video is at the end, change text of play button to replay
-            // later, when queues are implemented, this will have to check if there is another video to play afterwards
             try
             {
                 if (viewport.Position == viewport.NaturalDuration.TimeSpan)
@@ -106,8 +106,8 @@ namespace MediaPlayer
             Seeker.Value = viewport.Position.TotalMilliseconds;
         }
 
-        //Kept outside for future use
-
+        
+        // pauses or unpauses the playback
         private void PlayPause_Click(object sender, RoutedEventArgs e)
         {
             double speed = parse_SpeedRatio();
@@ -158,7 +158,7 @@ namespace MediaPlayer
             //Sets the dropped file to the viewport
             viewport.Source = new Uri(vidFile);
 
-            viewport.Volume = 1; //Temporary, will use a slider
+            viewport.Volume = slider_volume.Value;
         }
 
         private void OpenMedia(object sender, RoutedEventArgs e)
@@ -201,6 +201,8 @@ namespace MediaPlayer
         {
             viewport.SpeedRatio = parse_SpeedRatio();
         }
+        // calculates a speed from the playback speed textbox.
+        // always returns some valid value, even given invalid input
         private double parse_SpeedRatio()
         {
             double playback;
@@ -317,7 +319,7 @@ namespace MediaPlayer
                 string vidFile = fileDialog.FileName;
                 viewport.Source = new Uri(vidFile);
 
-                viewport.Volume = 1; //Temporary, will use a slider
+                viewport.Volume = slider_volume.Value;
                 viewport.Play();
                 isPlaying = true;
             }
@@ -336,9 +338,8 @@ namespace MediaPlayer
             MessageBox.Show(AboutText, txt);
         }
         
-        private void DefaultTheme_Click(object sender, RoutedEventArgs e)
+        private void UpdateWindowTheme()
         {
-            theme = new StandardFactory().GetLight();
             MainUI.Background = theme.ChangeBackground();
 
             lbl_time_remaining.Foreground = theme.ChangeLabelColor();
@@ -349,53 +350,31 @@ namespace MediaPlayer
             theme.ChangeButtonImage(Reverse);
             theme.ChangeButtonImage(FastForward);
             theme.ChangeButtonImage(FullScreen);
-
+        }
+        private void DefaultTheme_Click(object sender, RoutedEventArgs e)
+        {
+            theme = new StandardFactory().GetLight();
+            UpdateWindowTheme();
         }
 
         private void NightTheme_Click(object sender, RoutedEventArgs e)
         {
             theme = new StandardFactory().GetDark();
-            MainUI.Background = theme.ChangeBackground();
-            
-            lbl_time_remaining.Foreground = theme.ChangeLabelColor();
-            lbl_playback_text.Foreground = theme.ChangeLabelColor();
-
-            theme.ChangeButtonImage(FastBackward);
-            theme.ChangeButtonImage(PlayPause);
-            theme.ChangeButtonImage(Reverse);
-            theme.ChangeButtonImage(FastForward);
-            theme.ChangeButtonImage(FullScreen);
+            UpdateWindowTheme();
         }
 
         private void OrangeTheme_Click(object sender, RoutedEventArgs e)
         {
             theme = new AdditionalFactory().GetLight();
-            MainUI.Background = theme.ChangeBackground();
-
-            lbl_time_remaining.Foreground = theme.ChangeLabelColor();
-            lbl_playback_text.Foreground = theme.ChangeLabelColor();
-
-            theme.ChangeButtonImage(FastBackward);
-            theme.ChangeButtonImage(PlayPause);
-            theme.ChangeButtonImage(Reverse);
-            theme.ChangeButtonImage(FastForward);
-            theme.ChangeButtonImage(FullScreen);
+            UpdateWindowTheme();
         }
 
         private void EdgyTheme_Click(object sender, RoutedEventArgs e)
         {
             theme = new AdditionalFactory().GetDark();
-            MainUI.Background = theme.ChangeBackground();
-
-            lbl_time_remaining.Foreground = theme.ChangeLabelColor();
-            lbl_playback_text.Foreground = theme.ChangeLabelColor();
-
-            theme.ChangeButtonImage(FastBackward);
-            theme.ChangeButtonImage(PlayPause);
-            theme.ChangeButtonImage(Reverse);
-            theme.ChangeButtonImage(FastForward); 
-            theme.ChangeButtonImage(FullScreen);
+            UpdateWindowTheme();
         }
+        // opens up a window for setting keybindings
         private void Hotkeys_Click(object sender, RoutedEventArgs e)
         {
             KeybindingsWindow keybindingsWindow = new KeybindingsWindow(this);
@@ -434,7 +413,7 @@ namespace MediaPlayer
         {
             viewport.Volume = slider_volume.Value;
         }
-
+        // mutes the volume of the media player, or unmutes if it was already muted
         private void MuteClick(object sender, RoutedEventArgs e)
         {
             if (slider_volume.Value > 0)
@@ -447,7 +426,7 @@ namespace MediaPlayer
                 slider_volume.Value = volume;
             }
         }
-
+        // captures hotkey input
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == keybinder.PlayPause)
@@ -491,7 +470,7 @@ namespace MediaPlayer
                FullScreen_Click(sender, e);
             }
         }
-
+        // Maximizes the windows
         private void FullScreen_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Maximized)
@@ -505,7 +484,7 @@ namespace MediaPlayer
             else
                 this.WindowState = WindowState.Maximized;
         }
-
+        // Allows removing focus from the textbox when clicking the window
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MainUI.Focus();
