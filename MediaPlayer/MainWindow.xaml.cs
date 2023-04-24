@@ -306,6 +306,25 @@ namespace MediaPlayer
 
         }
 
+        Boolean AspRatio = false;
+
+        private void AspRatio_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (AspRatio == false)
+            {
+                viewport.Stretch = Stretch.Fill;
+                AspStretch.Header = "Use Original Aspect Ratio";
+                AspRatio = true;
+            }
+            else if (AspRatio == true)
+            {
+                viewport.Stretch = Stretch.Uniform;
+                AspStretch.Header = "Stretch Aspect Ratio";
+                AspRatio = false;
+            }
+        }
+
         private void LoadFile_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog();
