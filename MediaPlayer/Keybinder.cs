@@ -29,7 +29,6 @@ namespace MediaPlayer
         }
         public void readKeybindingsFile()
         {
-            Console.WriteLine("ENTERED READING FUNCTION");
             try
             {
                 if (!File.Exists(keybindingsFilePath))
