@@ -54,6 +54,7 @@
                 <MenuItem Header="General Settings"/>
                 <MenuItem Header="Video Settings"/>
                 <MenuItem Header="Hotkeys" Click="Hotkeys_Click"/>
+                <MenuItem Name="AspStretch" Header="Stretch Aspect Ratio" Click="AspRatio_Click"/>
                 <Separator/>
                 <MenuItem Header="Default Theme" Click="DefaultTheme_Click"/>
                 <MenuItem Header="Night Theme" Click="NightTheme_Click"/>

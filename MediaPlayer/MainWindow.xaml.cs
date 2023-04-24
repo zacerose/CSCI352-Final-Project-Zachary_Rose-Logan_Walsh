@@ -495,6 +495,25 @@ namespace MediaPlayer
             }
         }
 
+        Boolean AspRatio = false;
+
+        private void AspRatio_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (AspRatio == false)
+            {
+                viewport.Stretch = Stretch.Fill;
+                AspStretch.Header = "Use Original Aspect Ratio";
+                AspRatio = true;
+            }
+            else if (AspRatio == true)
+            {
+                viewport.Stretch = Stretch.Uniform;
+                AspStretch.Header = "Stretch Aspect Ratio";
+                AspRatio = false;
+            }
+        }
+
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == keybinder.PlayPause)

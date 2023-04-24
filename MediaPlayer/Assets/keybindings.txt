@@ -1,6 +1,6 @@
 Space
-OemComma
 OemPeriod
+OemComma
 R
 M
 Up
