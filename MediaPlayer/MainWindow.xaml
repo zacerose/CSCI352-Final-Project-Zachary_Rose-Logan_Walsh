@@ -46,7 +46,7 @@
         <Menu x:Name="TopMenu" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <MenuItem x:Name="FileMenu" Header="File" Height="24" Width="34" Click="FileMenu_Click">
                 <MenuItem Header="Load File" Click="LoadFile_Click"/>
-                <MenuItem Header="Load Queue"/>
+                <!--<MenuItem Header="Load Queue"/>-->
                 <Separator/>
                 <MenuItem Header="Exit"/>
             </MenuItem>
