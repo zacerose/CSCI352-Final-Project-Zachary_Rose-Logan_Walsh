@@ -1,8 +1,10 @@
 # Media_Player_Final_Project
 Names: Logan Walsh, Zachary Rose
 
-Last Updated: 4/6/2023
+Last Updated: 4/25/2023  
+Presentation Link: https://docs.google.com/presentation/d/1y1GUIf0-syOwFXKu6ycYu5FRF87QjvQyyHHTL72wlGI
 
+# Incomplete from here
 ## Operation
 Videos files need to be dragged and dropped to play in the program. Currently features a basic pause button
 and a timeline for skipping around in the video. The player can actually play audio files as well I was thinking
