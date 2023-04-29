@@ -189,6 +189,7 @@ Some useful terminology:
 \item Windows Media Player: a media player that comes with Windows OS by default. Very bare-bones  
 \item VLC Media Player: A popular media player for power users. Comes with a huge amount of customization options.
 \item Fullscreen: refers to when the video is scaled up to cover an entire monitor  
+\item Aspect Ratio: refers to the ratio between the width and height in pixels
 \end{itemize}
 
 We decided to make a media player because we thought it would be interesting to make a tool that we might actually use, rather than some project for the sake of displaying some unusual programming concept. It will be good practice towards developing a user interface for a user-oriented application. 
@@ -234,7 +235,7 @@ The functional requirements for a media player are straight forward for anyone w
 \item User can use video timeline to skip to desired part of video directly
 \item Application supports fullscreen playback 
 \item User can pause and unpause the playback at will
-\item Application supports different playback speeds, between .5x and 2x
+\item Application supports different playback speeds, between -2x and 2x
 \item User can change the volume as desired
 \end{itemize}
 
@@ -248,14 +249,13 @@ The functional requirements for a media player are straight forward for anyone w
 \subsection{Use Cases}
 
 \begin{itemize}
-\label{itm:UseCase1}
 \item[Use Case Number:] 1
 \item[Use Case Name:] Loading up a video
 \item[Description:] The user wants to load a video from their hard drive to prepare for playback.
 \end{itemize}
 
 \begin{enumerate}
-\item User opens up file browsing menu by left-clicking "File," followed by "Load File" (See Figure \ref{FileSearchMockup}).
+\item User opens up file browsing menu by left-clicking "File," followed by "Load File" (See Figure \ref{FileSearchInterface}).
 \item User navigates to desired video and selects it.
 \item[Termination Outcome:] Video is loaded and begins playback.
 \end{enumerate}
@@ -280,30 +280,30 @@ Note: File selected doesn't exist.
 \end{itemize}
 
 \begin{enumerate}
-\item User opens up the options by left-clicking the "Options" tab with the mouse.
-\item User selects "Hotkeys" by left-clicking with the mouse.
-\item User selects the binding they want to change, and presses the desired keyboard key to change it to.
-\item[Termination Outcome:] New keybindings are set for any available functionality, and the new bindings will be saved to a file for automatic loading upon opening the application. 
+\item User opens up the options by left-clicking the "Options" tab with the mouse See \ref{OptionsInterface}.
+\item User selects "Set Hotkeys" by left-clicking with the mouse.
+\item User clicks the button corresponding to the binding they want to change, and presses the desired keyboard key. See /ref{KeybindingsInterface}.
+\item[Termination Outcome:] New keybindings are set for any available functionality, and the new bindings will be saved to a file for automatic loading upon opening the application, should the user choose to save them.
 \end{enumerate}
 
 \begin{itemize}
 \item[Use Case Number:] 3
 \item[Use Case Name:] Controlling playback
-\item[Description:] During playback, the user wants to control different aspects of the playback. See Figure \ref{PlayerMockup} for the buttons available to left-click. 
+\item[Description:] During playback, the user wants to control different aspects of the playback. See Figure \ref{PlayerInterface} for the buttons available to left-click. 
 \end{itemize}
 
 \begin{enumerate}
 \item User pauses and unpauses playback by left-clicking the pause button. 
-\item User increases and decreases playback speed using the corresponding buttons.  
-\item Alternative: User enters a playback speed directly into the text box and presses the enter key.
+\item User increases and decreases playback speed using the corresponding buttons.
+\item Alternative: User enters a valid playback speed directly into the text box (between -2 and 2).
 \item User increases and decreases volume by dragging the volume slider using the mouse.
 \item User enters fullscreen mode by left-clicking the fullscreen button.
 \item[Termination Outcome:] Video is in playback in the way desired by the user.
 \end{enumerate}
 
-Alternative: User wishes to use keybindings to control video playback
+Alternative: User wishes to use keybindings to control video playback. See Figure \ref{KeybindingsInterface}.
 \begin{enumerate}
-\item User pauses and unpauses playback by pressing the bound buttons on the keyboard.
+\item User pauses and unpauses playback by pressing the bound button on the keyboard.
 \item User increases and decreases playback speed by pressing the bound buttons on the keyboard.
 \item User increases and decreases volume by pressing the bound buttons on the keyboard.
 \item User enters fullscreen mode by pressing the bound button on the keyboard.
@@ -313,28 +313,39 @@ Alternative: User wishes to use keybindings to control video playback
 
 \subsection{Interface}
 
+Upon opening the media player, the user sees the player awaiting input (See \ref{PlayerInterface}). From here they may wish to load a media file, which they do through the Load File interface (See \ref{FileSearchInterface}). This opens the Windows file search utility and makes selecting a media file simple.\par
+Next, the user may wish to choose from several available customization options under the "Options" menu (See \ref{OptionsInterface}). There are four themes to choose from, which change the color and overall appearance of the media player window. The user can also toggle between stretching the media to fit the window and the media maintaining its aspect ratio with the "Stretch Aspect Ratio" option. Finally, the user can choose to edit their keybindings under "Set Hotkeys", which opens a new window. \par
+In the Keybindings window (See \ref{KeybindingsInterface}), the user can set their desired keyboard buttons to control the media player in addition to using the mouse. See Use Case 2 for a more detailed explanation.
+
 \begin{figure}[H]
 \begin{center}
-\includegraphics[scale=3]{FileSearchMockup.png}
+\includegraphics[scale=1.2]{FileSearchInterface.png}
 \caption{Sample of interface for selecting video file}
-\label{FileSearchMockup}
+\label{FileSearchInterface}
+\end{center}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=.7]{PlayerInterface.png}
+\caption{Sample of interface before a video is in playback}
+\label{PlayerInterface}
 \end{center}
 \end{figure}
 
-%This is the starting screen after opening the application. See Use Case \ref{itm:UseCase1} for instructions on how to %load a file and begin playback.
-%\begin{figure}[H]
-%\begin{center}
-%\includegraphics[scale=.8]{PlayerInterface.png}
-%\caption{Sample of interface for selecting video file}
-%\label{PlayerInterface}
-%\end{center}
-%\end{figure}
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[scale=.7]{PlayerMockup.png}
-\caption{Sample of interface when a video is in playback}
-\label{PlayerMockup}
+\includegraphics[scale=.7]{OptionsInterface.png}
+\caption{Several options are available in the options menu}
+\label{OptionsInterface}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=.7]{KeybindingsInterface.png}
+\caption{Window for changing keybindings}
+\label{KeybindingsInterface}
 \end{center}
 \end{figure}
 
@@ -361,7 +372,9 @@ A Factory class is used to change the appearance of the application during runti
 
 The MainWindow class holds the WPF form. This form holds the button controls, and most importantly it holds the MediaElement object which is used to enable playback. Two DispatcherTimers are also used to keep the seeker updated with the video playback. These structures are located at the top of Figure \ref{MainUML}.\par
 The ThemeFactory is an abstract factory interface used to change the theme of the media player. When choosing a theme a new factory is constructed, and it is used to change the appearance of certain elements like background colors and button design. These structures are located at the bottom of Figure \ref{MainUML}.\par
-The Button Decorator is a wrapper for the Windows.Controls.Button with added state and behavior in relation to button appearance. This structure is located at the top of Figure \ref{MainUML}.
+The Button Decorator is a wrapper for the Windows.Controls.Button with added state and behavior in relation to button appearance. This structure is located at the top of Figure \ref{MainUML}.\par
+The Keybinder class is used to dynamically change keybindings during runtime. The MainWindow has a Keybinder, which it used to correctly map the desired keyboard key to a command. The KeybindingsWindow is a separate window that has access to the MainWindows Keybinder object, allowing it to edit it during runtime or write the bindings to a text file.
+
 \begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.4]{MediaPlayerUML.png}
@@ -389,7 +402,7 @@ Over the course of working on this project, we've learned many different things.
 
 We developed a media player that competently plays video and audio in an unfamiliar environment. We were able to implement design patterns to help organize class structure and promote decoupling. \medskip
 
-We weren't able to meet all of our goals. We haven't implemented playing a queue of videos, and the window doesn't yet scale correctly upon resizing. 
+We weren't able to meet all of our goals. We haven't implemented playing a queue of videos, and we hoped to have far more customization, such as changing the amount of time skipped when jumping forwards and backwards (See \ref{KeybindingsInterface}).
 
 \subsection{Future Work}
 This project didn't become anything impressive. We didn't find the time to implement all that we wanted to, so the final project lacks what usefulness we hoped it would have. We don't plan to continue development on this project any further, but we'll take what we learned during development and apply it in the future. 
