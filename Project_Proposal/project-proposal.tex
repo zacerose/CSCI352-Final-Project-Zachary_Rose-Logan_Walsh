@@ -226,6 +226,8 @@ Stretch Goals:
 \item WPF window can be resized, with all the elements keeping the same size ratio. 
 \end{itemize}
 
+We were able to meet all these goals besides creating a playlist. The interface WPF supplies for selecting multiple files at once was undesirable, and due to time constraints we couldn't find or develop an alternative.
+
 \subsection{Requirements}
 The functional requirements for a media player are straight forward for anyone who has used one before. We considered what we want to be able to do when watching a video, as well as what is absolutely necessary to do so. Loading a file is the absolute base requirement, but we've come to expect things like pausing and fast forwarding.
 
@@ -246,7 +248,17 @@ The functional requirements for a media player are straight forward for anyone w
 \item Application must be able to load and play several videos sequentially without performance loss.
 \end{itemize}
 
-\subsection{Use Cases}
+\subsection{Use Cases}*
+\begin{center}
+Use cases quick reference:
+\begin{tabular}{c | c}
+Use Case \#: & Short description \\
+\hline
+1 & Loading up a video \\
+2 & Editing keybindings \\
+3 & Controlling playback \\
+\end{tabular}
+\end{center}
 
 \begin{itemize}
 \item[Use Case Number:] 1
@@ -255,7 +267,7 @@ The functional requirements for a media player are straight forward for anyone w
 \end{itemize}
 
 \begin{enumerate}
-\item User opens up file browsing menu by left-clicking "File," followed by "Load File" (See Figure \ref{FileSearchInterface}).
+\item User opens up file browsing menu by left-clicking ``File," followed by ``Load File" (See Figure \ref{FileSearchInterface}).
 \item User navigates to desired video and selects it.
 \item[Termination Outcome:] Video is loaded and begins playback.
 \end{enumerate}
@@ -263,7 +275,7 @@ The functional requirements for a media player are straight forward for anyone w
 %Alternative: User wishes to load a video using a file path
 %\begin{enumerate}
 %\item User enters file path into search bar (See Figure \ref{FileSearchMockup}).
-%\item User left-clicks "OK" button.
+%\item User left-clicks ``OK" button.
 %\item[Termination Outcome:] Video is paused and prepared for playback.
 %\end{enumerate}
 
@@ -280,8 +292,8 @@ Note: File selected doesn't exist.
 \end{itemize}
 
 \begin{enumerate}
-\item User opens up the options by left-clicking the "Options" tab with the mouse See \ref{OptionsInterface}.
-\item User selects "Set Hotkeys" by left-clicking with the mouse.
+\item User opens up the options by left-clicking the ``Options" tab with the mouse See \ref{OptionsInterface}.
+\item User selects ``Set Hotkeys" by left-clicking with the mouse.
 \item User clicks the button corresponding to the binding they want to change, and presses the desired keyboard key. See /ref{KeybindingsInterface}.
 \item[Termination Outcome:] New keybindings are set for any available functionality, and the new bindings will be saved to a file for automatic loading upon opening the application, should the user choose to save them.
 \end{enumerate}
@@ -314,7 +326,7 @@ Alternative: User wishes to use keybindings to control video playback. See Figur
 \subsection{Interface}
 
 Upon opening the media player, the user sees the player awaiting input (See \ref{PlayerInterface}). From here they may wish to load a media file, which they do through the Load File interface (See \ref{FileSearchInterface}). This opens the Windows file search utility and makes selecting a media file simple.\par
-Next, the user may wish to choose from several available customization options under the "Options" menu (See \ref{OptionsInterface}). There are four themes to choose from, which change the color and overall appearance of the media player window. The user can also toggle between stretching the media to fit the window and the media maintaining its aspect ratio with the "Stretch Aspect Ratio" option. Finally, the user can choose to edit their keybindings under "Set Hotkeys", which opens a new window. \par
+Next, the user may wish to choose from several available customization options under the ``Options" menu (See \ref{OptionsInterface}). There are four themes to choose from, which change the color and overall appearance of the media player window. The user can also toggle between stretching the media to fit the window and the media maintaining its aspect ratio with the ``Stretch Aspect Ratio" option. Finally, the user can choose to edit their keybindings under ``Set Hotkeys", which opens a new window. \par
 In the Keybindings window (See \ref{KeybindingsInterface}), the user can set their desired keyboard buttons to control the media player in addition to using the mouse. See Use Case 2 for a more detailed explanation.
 
 \begin{figure}[H]
