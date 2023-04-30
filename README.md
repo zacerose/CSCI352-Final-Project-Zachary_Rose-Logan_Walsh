@@ -2,28 +2,13 @@
 Names: Logan Walsh, Zachary Rose
 
 Last Updated: 4/25/2023  
-Presentation Link: https://docs.google.com/presentation/d/1y1GUIf0-syOwFXKu6ycYu5FRF87QjvQyyHHTL72wlGI
 
-# Incomplete from here
-## Operation
-Videos files need to be dragged and dropped to play in the program. Currently features a basic pause button
-and a timeline for skipping around in the video. The player can actually play audio files as well I was thinking
-it could display some kind of image to tell the user it's playing audio. Video Playback speed can now be adjusted
+A custom built media player using C# WPF with custom bindings and interchangable themes
 
-## Bugs
-* Play/Pause button seems to stop working after the program is on for a while
-* Moving forward or backwards on the timeline while the video is playing doesn't work correctly, this is especially noticable in long videos
-* Does not appear to support mkv files. 
-* Player has to be closed in order to load another media file. 
-* Window does not scale properly
-* Playback speed performance isn't great
-* Video sometimes pauses itself when skipping around on the seeker.
-* Playback speed is glitchy when it is over 2.0
+## Required Files
+* Project_Proposal/ --> contains information about the project as a whole
+* MediaPlayer/ --> contains project files for the media player
+* CSCI352-Final-Project.sln --> solution file for media player
 
-## To Do (At the moment)
-* Fix Bugs
-* Add Skip Feature
-* Fix Playback speed adjustment
-* Improve Volume Control
-* Improve the UI
-* Playback features need to hide themselves after a few seconds of not being used. 
+## Further details
+For further details on program usage and design decisions, please see the attached proposal [here](Project_Proposal/project-proposal.pdf)
