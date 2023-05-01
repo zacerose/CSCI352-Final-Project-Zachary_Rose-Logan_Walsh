@@ -13,6 +13,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+// Video player Project 
+// Logan Walsh and Zachary Rose
+// Last Edited: 4-30-2023
+// CSCI 352
+// Handles the interface with which the user can change the keybindings and save them to a file
 namespace MediaPlayer
 {
     /// <summary>

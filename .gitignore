@@ -362,3 +362,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /MediaPlayer/MainWindow.xaml.cs
+/Project_Proposal/project-proposal.aux
+/Project_Proposal/project-proposal.out
+/Project_Proposal/project-proposal.synctex.gz

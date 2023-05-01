@@ -7,6 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+// Video player Project 
+// Logan Walsh and Zachary Rose
+// Last Edited: 4-30-2023
+// CSCI 352
+// Handles dynamic keybindings and file IO for saving them between sessions
 namespace MediaPlayer
 {
     public class Keybinder

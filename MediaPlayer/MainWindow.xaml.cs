@@ -12,12 +12,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Threading; //Added for the timer
+using System.Windows.Threading;
 using System.Windows.Shapes;
 
-//Video player Program by Logan Walsh and Zachary Rose
-//Last Edited: 3-18-2023
-
+// Video player Project 
+// Logan Walsh and Zachary Rose
+// Last Edited: 4-30-2023
+// CSCI 352
+// This class handles the media element and logic relating to controlling the media playback
 namespace MediaPlayer
 {
     /// <summary>
@@ -302,12 +304,6 @@ namespace MediaPlayer
                 ManualPlayback.Text = speed.ToString();
             }
         }
-
-        private void FileMenu_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
 
         private void AspRatio_Click(object sender, RoutedEventArgs e)
         {

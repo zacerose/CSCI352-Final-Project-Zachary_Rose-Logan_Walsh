@@ -20,6 +20,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
 
+// Video player Project 
+// Logan Walsh and Zachary Rose
+// Last Edited: 4-30-2023
+// CSCI 352
+// Abstract Factory pattern for handling the appearance of the windows dynamically
 namespace MediaPlayer
 {
     public interface ThemeFactory

@@ -20,9 +20,13 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
 
+// Video player Project 
+// Logan Walsh and Zachary Rose
+// Last Edited: 4-30-2023
+// CSCI 352
+// decorator for Windows.Controls.Button, adds extended state and behavior for changing the image based on the button "type"
 namespace MediaPlayer
 {
-    // decorator for Windows.Controls.Button, adds extended state and behavior for changing the image based on the button "type"
     public class ButtonDecorator : Button
     {
         public Type type { get; set; }
