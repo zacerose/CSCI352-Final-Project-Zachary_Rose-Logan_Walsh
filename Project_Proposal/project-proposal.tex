@@ -202,7 +202,8 @@ Our hope is that this project will become a useful little tool for those who wis
 
 Before we started this project, we predicted that the hardest thing would be designing an interface to dynamically change keybindings. It would need a file to store them, the ability to parse and edit said file, and a graphical interface with which the user will change the bindings from within the app. 
 
-However, the biggest challenge ended up being designing the UI and keeping it balanced well, even through changing the size of the window. While WPF provided an easy way to quickly prototype a user interface, it was difficult to design something that was appealing. 
+However, the biggest challenge ended up being designing the UI and keeping it balanced well, even through changing the size of the window. While WPF provided an easy way to quickly prototype a user interface, it was difficult to design something that was appealing. \par
+Another big challenge was getting the reverse playback to work correctly. The MediaElement in the standard library doesn't come with negative playback speeds, so it had to be implemented by hand. The end product isn't quite satisfactory, and we wish we could have come up with a more robust solution.
 \section{Scope}
 
 %Basic goals for getting started: You can load up a video, play and pause it using buttons, and it can be replayed. 
