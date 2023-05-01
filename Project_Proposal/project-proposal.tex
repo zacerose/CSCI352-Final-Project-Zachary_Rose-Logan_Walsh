@@ -200,9 +200,9 @@ Our hope is that this project will become a useful little tool for those who wis
 
 \subsection{Challenges}
 
-By far the hardest thing will likely be designing an interface to dynamically change key bindings. It will need a file to store them, the ability to parse and edit said file, and an interface with which the user will change the bindings from within the app. 
+Before we started this project, we predicted that the hardest thing would be designing an interface to dynamically change keybindings. It would need a file to store them, the ability to parse and edit said file, and a graphical interface with which the user will change the bindings from within the app. 
 
-
+However, the biggest challenge ended up being designing the UI and keeping it balanced well, even through changing the size of the window. While WPF provided an easy way to quickly prototype a user interface, it was difficult to design something that was appealing. 
 \section{Scope}
 
 %Basic goals for getting started: You can load up a video, play and pause it using buttons, and it can be replayed. 
@@ -248,7 +248,7 @@ The functional requirements for a media player are straight forward for anyone w
 \item Application must be able to load and play several videos sequentially without performance loss.
 \end{itemize}
 
-\subsection{Use Cases}*
+\subsection{Use Cases}
 \begin{center}
 Use cases quick reference:
 \begin{tabular}{c | c}
@@ -378,7 +378,8 @@ See Figure \ref{timeline}.
 The Media Player works by updating a Media Element when the user gives input. It is implemented as a MainWindow class containing a MediaElement object, as well as several helping classes to control the appearance. \medskip
 
 Our MainWindow class contains several important features that work together to update the Media Element. A seeker is updated on a timer to remain updated with video playback, and in the same way the video playback is updated when the seeker is moved. A timer is also used to implement playing in reverse; every tick of the timer pushes the media backwards by an amount with respect to the video playback speed.   \par
-A Factory class is used to change the appearance of the application during runtime. This was chosen in order to simplify adding more themes by keeping them unbound from the main class.
+A Factory class is used to change the appearance of the application during runtime. This was chosen in order to simplify adding more themes by keeping them unbound from the main class. \par
+The Keybindings were delegated to their own class, and an associated KeybindingsWindow class to provide the interface with which to change them. 
 
 \subsection{UML Outline}
 
@@ -410,15 +411,14 @@ We used a decorator for the Windows.Control.Button to add extra behavior and sta
 
 
 \section{Results}
-Over the course of working on this project, we've learned many different things. We successfully used waterfall development to plan our work, and we learned the difficulties of developing a larger, longer term project. \medskip
+Over the course of working on this project, we've learned many different things. We successfully used waterfall development to plan our work, and we learned the difficulties of developing a larger, longer term project. \par
 
-We developed a media player that competently plays video and audio in an unfamiliar environment. We were able to implement design patterns to help organize class structure and promote decoupling. \medskip
+We developed a media player that competently plays video and audio in an unfamiliar environment. We were able to implement design patterns to help organize class structure and promote decoupling. \par
 
 We weren't able to meet all of our goals. We haven't implemented playing a queue of videos, and we hoped to have far more customization, such as changing the amount of time skipped when jumping forwards and backwards (See \ref{KeybindingsInterface}).
 
 \subsection{Future Work}
-This project didn't become anything impressive. We didn't find the time to implement all that we wanted to, so the final project lacks what usefulness we hoped it would have. We don't plan to continue development on this project any further, but we'll take what we learned during development and apply it in the future. 
-
+This project didn't become anything impressive. We didn't find the time to implement all that we wanted to, so the final project lacks what usefulness we hoped it would have. We don't plan to continue development on this project any further, but we'll take what we learned during development and apply it in the future. If we were to develop something similar in the future, we would use WPF again. It provided built in features that greatly simplified making the user interface, and the built in debugging tools in Visual Studio was useful.
 
 
 
