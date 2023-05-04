@@ -152,7 +152,7 @@
 
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-Our project is a custom video player as a C\# WPF application. It will allow you to browse to a file, load up a video, and control the playback as needed. AVI, MWV, and MP4 will be supported file types. Those who want more control over their video playback beyond what Windows comes with will find this application useful. 
+Our project is a custom video player as a C\# WPF application. It allows you to browse to a file, load up a video or audio file, and control the playback as needed. AVI, MWV, and MP4 are supported file types. Those who want more control over their video playback beyond what Windows comes with will find this application useful. 
 \end{abstract}
 
 }
@@ -171,11 +171,9 @@ Our project is a custom video player as a C\# WPF application. It will allow you
 \section{Introduction}
 
 
-For this project, we plan to make a media player program that offers some features that are unavailable in Windows Media Player. It will include a file browser to select a media file, and it will include the controls for playback such as: play/pause, fast forward/slow down, and skip to different parts of the video, as well as volume controls. 
+For this project, we made a media player program that offers some features that are unavailable in Windows Media Player. It includes a file browser to select a media file, and it includes the controls for playback such as: play/pause, fast forward/slow down, and skip to different parts of the video, as well as volume controls. This project is intended for those who want some finer control over the playback of their video files. Windows Media Player does have the basic features for controlling playback of media, but it leaves much to be desired in customization and more niche functionality. 
 
-This project is intended for those who want some finer control over the playback of their video files. Windows Media Player does have the basic features for controlling playback of media, but it leaves much to be desired in customization and more niche functionality. 
-
-Windows Media Player lacks features such as moving forward and backwards a frame at a time, enlarging the video at a key press, and muting the video with a key press. In fact, Windows Media Player lacks keyboard controls entirely. VLC Media Player has these features and more, but it can sometimes feel daunting and over bloated for an average use case. This media player will fit comfortably in the middle between the most casual of users and super users. 
+Windows Media Player lacks features such as moving forward and backwards a frame at a time, enlarging the video at a key press, and muting the video with a key press. In fact, Windows Media Player lacks keyboard controls entirely. VLC Media Player has these features and more, but it can sometimes feel daunting and over bloated for an average use case. This media player fits comfortably in the middle between the most casual of users and super users. 
 
 \subsection{Background}
 
@@ -192,11 +190,11 @@ Some useful terminology:
 \item Aspect Ratio: refers to the ratio between the width and height in pixels
 \end{itemize}
 
-We decided to make a media player because we thought it would be interesting to make a tool that we might actually use, rather than some project for the sake of displaying some unusual programming concept. It will be good practice towards developing a user interface for a user-oriented application. 
+We decided to make a media player because we thought it would be interesting to make a tool that we might actually use, rather than some project for the sake of displaying some unusual programming concept. We found it to be good practice towards developing a user interface for a user-oriented application. 
 
 \subsection{Impacts}
 
-Our hope is that this project will become a useful little tool for those who wish to have a light-weight and customizable media player. For those who want a middle ground between the simplicity of Windows Media Player and the overwhelming power of VLC.
+Our hope for this project was to make a useful little tool for those who wish to have a light-weight and customizable media player. For those who want a middle ground between the simplicity of Windows Media Player and the overwhelming power of VLC. 
 
 \subsection{Challenges}
 
@@ -208,9 +206,9 @@ Another big challenge was getting the reverse playback to work correctly. The Me
 
 %Basic goals for getting started: You can load up a video, play and pause it using buttons, and it can be replayed. 
 
-The project will be done once the program runs without any issues and has enough features to differentiate it from Windows Media Player. In other words, the ability to control the video playback with the keyboard and to create custom keybindings. 
+The project was to be considered done once the program ran without any issues and had enough features to differentiate it from Windows Media Player. In other words, the ability to control the video playback with the keyboard and to create custom keybindings. 
 
-We think that this is a worthwhile project because it has practical use, and it will allow us to make further use of the WPF framework. It will require an attractive interface and different form elements working together behind the scenes. 
+We think that this is a worthwhile project because it has practical use, and it allows us to make further use of the WPF framework. It requires an attractive interface and different form elements working together behind the scenes. 
 
 Basic Goals:
 \begin{itemize}
@@ -295,7 +293,7 @@ Note: File selected doesn't exist.
 \begin{enumerate}
 \item User opens up the options by left-clicking the ``Options" tab with the mouse See \ref{OptionsInterface}.
 \item User selects ``Set Hotkeys" by left-clicking with the mouse.
-\item User clicks the button corresponding to the binding they want to change, and presses the desired keyboard key. See /ref{KeybindingsInterface}.
+\item User clicks the button corresponding to the binding they want to change, and presses the desired keyboard key. See \ref{KeybindingsInterface}.
 \item[Termination Outcome:] New keybindings are set for any available functionality, and the new bindings will be saved to a file for automatic loading upon opening the application, should the user choose to save them.
 \end{enumerate}
 
@@ -419,7 +417,7 @@ We developed a media player that competently plays video and audio in an unfamil
 We weren't able to meet all of our goals. We haven't implemented playing a queue of videos, and we hoped to have far more customization, such as changing the amount of time skipped when jumping forwards and backwards (See \ref{KeybindingsInterface}).
 
 \subsection{Future Work}
-This project didn't become anything impressive. We didn't find the time to implement all that we wanted to, so the final project lacks what usefulness we hoped it would have. We don't plan to continue development on this project any further, but we'll take what we learned during development and apply it in the future. If we were to develop something similar in the future, we would use WPF again. It provided built in features that greatly simplified making the user interface, and the built in debugging tools in Visual Studio was useful.
+We didn't find the time to implement all that we wanted to, so the final project lacks what usefulness we hoped it would have. We don't plan to continue development on this project any further, but we'll take what we learned during development and apply it in the future. If we were to develop something similar in the future, we would use WPF again. It provided built in features that greatly simplified making the user interface, and the built in debugging tools in Visual Studio was useful.
 
 
 
